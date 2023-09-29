@@ -18,7 +18,7 @@ import utils
 SITEMAP_URI = '/sitemap.xml'
 BEGIN_URL = 'https://www.orlando.gov'
 
-FILE_ERROS = './errors.txt'
+FILE_ERRORS = './errors.txt'
 FILE_SCRAPED = './urls_scraped.txt'
 
 DIR_SCRAPED = './scraped/'
@@ -32,9 +32,9 @@ embedding = OpenAIEmbeddings()
 persist_directory = './chroma/'
 
 text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500,
-        chunk_overlap=150
-    )
+    chunk_size=1500,
+    chunk_overlap=150
+)
 
 vectordb = None
 
@@ -50,12 +50,18 @@ def fetch_pdf(url: str, destination: str) -> None:
         response = requests.get(url)
         with open(destination, 'wb') as output_file:
             output_file.write(response.content)
-    except Exception as e:
+    except Exception as ex:
         print('Could not write the following PDF: ' + url)
-        print(e)
+        print(ex)
 
 
 def write_text_to_file(filename: str, text: str) -> None:
+    """
+    Writes file to disk
+    :param filename:
+    :param text:
+    :return:
+    """
     global TOTAL_SCRAPED
     TOTAL_SCRAPED = TOTAL_SCRAPED + 1
 
@@ -72,9 +78,7 @@ def write_text_to_file(filename: str, text: str) -> None:
         file.close()
 
 
-def split_embed_store(filename:str, ext:str) -> None:
-    docs = []
-
+def split_embed_store(filename: str, ext: str) -> None:
     global vectordb
 
     loader = None
@@ -84,10 +88,10 @@ def split_embed_store(filename:str, ext:str) -> None:
     else:
         loader = TextLoader(filename)
 
-    if loader != None:
+    if loader is not None:
         docs = loader.load_and_split(text_splitter)
 
-        if vectordb == None:
+        if vectordb is None:
             vectordb = Chroma.from_documents(
                 documents=docs,
                 embedding=embedding,
@@ -96,7 +100,8 @@ def split_embed_store(filename:str, ext:str) -> None:
         else:
             vectordb.add_documents(documents=docs)
 
-def transform_url(url: str):
+
+def transform_url(url: str) -> str:
     # Strip out the 'http://' or 'https://' part
     parsed_url = urlparse(url)
     stripped_url = parsed_url.netloc + parsed_url.path
@@ -130,12 +135,11 @@ def extract_text(soup):
     return text
 
 
-def getURLsFromSitemap(url):
-    url_sitemap = url + SITEMAP_URI;
+def get_urls_from_sitemap(url: str) -> dict:
+    url_sitemap = url + SITEMAP_URI
 
     response = requests.get(url_sitemap)
     if response.status_code == 200:
-        sitemap_xml = response.content
         parcala = BeautifulSoup(response.content, "xml")
     else:
         print(f'Failed to retrieve sitemap: {response.status_code}')
@@ -153,11 +157,11 @@ def getURLsFromSitemap(url):
     return urls_from_xml
 
 
-def scrape(url, visited=None)->None :
+def scrape(url, visited=None) -> None:
     """
-    Scrapes the given URL and it crawls the URL via the links within the page
+    Scrapes the given URL, and it crawls the URL via the links within the page
     :param url: the URL to scrape
-    :param visited: this allows us to recursevely crawl
+    :param visited: this allows us to recursively crawl
     :return:
     """
     if visited is None:
@@ -170,9 +174,9 @@ def scrape(url, visited=None)->None :
     original_domain = urlparse(url).netloc
 
     print(f'Scraping {url}')
-    transformedUrl = transform_url(url)
+    transformed_url = transform_url(url)
 
-    print(f'Transformed {transformedUrl}')
+    print(f'Transformed {transformed_url}')
     visited.add(url)  # Mark the URL as visited
     dictDoneUrls.add(url)
 
@@ -189,18 +193,18 @@ def scrape(url, visited=None)->None :
         response = requests.get(url, timeout=10)
     except requests.exceptions.RequestException as e:
         print(f"Failed to retrieve {url}: {e}")
-        fileErrors.writelines([url] + '/n')
+        fileErrors.writelines(url + '/n')
         return
 
     # If fetch was successful, parse the page with BeautifulSoup
     soup = BeautifulSoup(response.content, 'html.parser')
 
     # Extract all the text for current URL
-    urlText = extract_text(soup)
+    url_text = extract_text(soup)
 
     # writeScrapedContent
-    write_text_to_file(DIR_SCRAPED + transformedUrl + '.txt', urlText)
-    split_embed_store(DIR_SCRAPED + transformedUrl + '.txt', '.txt')
+    write_text_to_file(DIR_SCRAPED + transformed_url + '.txt', url_text)
+    split_embed_store(DIR_SCRAPED + transformed_url + '.txt', '.txt')
 
     # Extract all links
     for a_tag in soup.find_all('a', href=True):
@@ -219,36 +223,34 @@ def scrape(url, visited=None)->None :
         if link not in visited and link_domain == original_domain:
             scrape(link, visited)  # Recursively scrape each link
 
+
 def initialize() -> None:
-    if os.path.exists(FILE_ERROS):
+    if os.path.exists(FILE_ERRORS):
         # If it exists, delete it
-        os.remove(FILE_ERROS)
+        os.remove(FILE_ERRORS)
 
     if os.path.exists(FILE_SCRAPED):
         os.remove(FILE_SCRAPED)
 
 
-
-
 """
 MAIN
-This is the entry point for the screper
+This is the entry point for the scraper
 """
 if __name__ == '__main__':
 
     openai.api_key = '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'
 
-    # Get the list of URL from web site
-    urlsToScrape = getURLsFromSitemap(BEGIN_URL)
+    # Get the list of URL from website
+    urlsToScrape = get_urls_from_sitemap(BEGIN_URL)
     # Get urls as a list
-    keys = list(urlsToScrape.keys())
+    keys = urlsToScrape.keys()
 
-
-    fileErrors = open(FILE_ERROS, 'a')
+    fileErrors = open(FILE_ERRORS, 'a')
     fileParsed = open(FILE_SCRAPED, 'a')
 
     for i in keys:
-        print(f'========= total scraped {TOTAL_SCRAPED}');
+        print(f'========= total scraped {TOTAL_SCRAPED}')
 
         try:
             scrape(i)

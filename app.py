@@ -9,6 +9,7 @@ import os
 from bs4 import BeautifulSoup
 import vectorstore
 
+
 class Scraper:
     embeddings: langchain.embeddings = None
     config: settings.Config
@@ -204,6 +205,7 @@ if __name__ == '__main__':
 
     scraper = Scraper('./config_cdc.yaml')
     scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
+
 
     #scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
     #scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')

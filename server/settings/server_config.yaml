@@ -1,0 +1,12 @@
+openai:
+  key: "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"
+
+kbs:
+-
+  name: "chroma"
+  directory: "../chroma"
+  embeddings: "OPEN_AI"
+-
+  name: "chroma_cheap"
+  directory: "../chroma_cheap"
+  embeddings: "OPEN_AI"

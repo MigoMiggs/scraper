@@ -1,5 +1,4 @@
 from typing import Dict
-
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 import logging.config
@@ -11,6 +10,7 @@ from dotenv import load_dotenv, find_dotenv
 import openai
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
+from fastapi.middleware.cors import CORSMiddleware
 
 description = """
 IBTS Assistant REST API answers questions against knowledge bases built from scraping sites.
@@ -99,16 +99,20 @@ def create_app() -> FastAPI:
 
     _app.logger = logger
     _app.kbs = load_vector_dbs()
-    vc = _app.kbs['chroma'].get_db()
 
-    openai.api_key = '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'
-    retriever = vc.as_retriever()
-    model = ChatOpenAI(model_name='gpt-4', temperature=0)
+    origins = [
+        "http://localhost:3000",  # React local dev server
+        "https://localhost",
+    ]
 
-    qa_chain = RetrievalQA.from_chain_type(
-        model,
-        retriever=retriever
+    _app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
+
     return _app
 
 
@@ -128,8 +132,15 @@ async def get_question(request: Request, question: str, kb: str='chroma', llm: s
     stores = application.kbs
     logger = application.logger
 
+    logger.debug(f"Getting answer to question: {question}")
+
     # Get the vbs from the dict
     vc = stores[kb].get_db()
+
+    # Show the total documents to make sure we got the right db
+    logger.debug(f"Getting answer to question: {question}")
+    #question = question + ' Describe step by step how you got to your answer from the existing information.'
+
     result = 'could not get result'
 
     if vc is None:
@@ -147,9 +158,10 @@ async def get_question(request: Request, question: str, kb: str='chroma', llm: s
 
     #question = "to what extent is social equity included in the Orlando Resilience Plan? and in what ways is it included?"
     result = qa_chain({"query": question})
+    answer = result['result']
 
-    logger.debug(f'Result: {result}')
-    return {"answer": result}
+    logger.debug(f'Answer: {answer}')
+    return {"answer": answer}
 
 
 if __name__ == "__main__":

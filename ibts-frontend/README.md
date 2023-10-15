@@ -1,6 +1,20 @@
-# Getting Started with Create React App
+# Getting Started with IBTS app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run through the following setup steps:
+
+1. Install Node.js 
+2. npm install axios
+3. npm install cors --save
+
+## Things to consider
+
+Had to add the following for the app to run:
+
+"scripts": {
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
+}
+
 
 ## Available Scripts
 

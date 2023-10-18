@@ -6,6 +6,7 @@ import langchain
 from langchain.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+
 class VectorDB:
     _instance = None
     vectordb = None
@@ -36,12 +37,15 @@ class VectorDB:
 
             self.logger.debug("Load embeddings")
 
-            # Set the right kind of embeddings
+            # Load the embeddings
             if self.config.get_embeddings()["type"] == 'HUGGING_FACE':
                 embeddings_model_name = "sentence-transformers/all-MiniLM-L6-v2"
                 self.embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
             elif self.config.get_embeddings()["type"] == 'OPEN_AI':
                 self.embeddings = OpenAIEmbeddings()
+            elif self.config.get_embeddings()["type"] == 'HUGGING_FACE_GTE_BASE':
+                embeddings_model_name = 'thenlper/gte-base'
+                self.embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
             else:
                 self.logger.error("Unknown embeddings setting.")
                 raise Exception("Unknown embeddings setting.")
@@ -50,9 +54,10 @@ class VectorDB:
             self.vectordb = Chroma(persist_directory=self.persistance_path, embedding_function=self.embeddings)
 
     def split_embed_store(self, filename: str, ext: str) -> None:
-        self.logger.debug("Split, embed and store " + filename)
-        loader = None
 
+        self.logger.debug("Split, embed and store " + filename)
+
+        loader = None
         try:
             if ext == '.pdf':
                 loader = PyPDFLoader(filename)
@@ -60,7 +65,6 @@ class VectorDB:
             else:
                 loader = TextLoader(filename)
                 self.logger.debug('Load Text')
-
             if loader is not None:
                 docs = loader.load_and_split(self.text_splitter)
                 self.vectordb.add_documents(documents=docs)
@@ -68,9 +72,5 @@ class VectorDB:
             self.logger.error(f'Failed to split and embed: {filename}')
             self.logger.error(f'Exception: {e}')
 
-
     def get_vector_db(self):
         return self.vectordb
-
-
-

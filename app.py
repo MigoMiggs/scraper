@@ -11,27 +11,30 @@ import vectorstore
 
 
 class Scraper:
+    """
+    This class is responsible for scraping a website and storing the text and its embeddings in the vector database
+    """
+
+    # Class variables
     embeddings: langchain.embeddings = None
     config: settings.Config
-
     dict_done_urls: set
     fileErrors = None
     fileParsed = None
-
     total_urls_scraped = 0
-
     _logger = None
 
+    # Filenames
     FILE_ERRORS = './errors.txt'
     FILE_SCRAPED = './urls_scraped.txt'
 
     DIR_SCRAPED = ''
     DIR_CHROMA = ''
 
-    def __new__(cls,  config_file_path='./config.yaml'):
+    def __new__(cls, config_file_path='./config.yaml'):
         return super().__new__(cls)
-        
-    def __init__(self,  config_file_path='./config.yaml'):
+
+    def __init__(self, config_file_path='./config.yaml'):
 
         # Laod the configuration to be available to the whole system
         self.config = Config(config_file_path)
@@ -40,6 +43,15 @@ class Scraper:
         self.DIR_SCRAPED = self.config.data['site']['scraped-path']
         self.DIR_CHROMA = self.config.data['vectordb']['chroma-path']
 
+        # if the directory self.DIR_SCRAPED does not exist, create it
+        if not os.path.exists(self.DIR_SCRAPED):
+            os.makedirs(self.DIR_SCRAPED)
+
+        # if the directory self.DIR_CHROMA does not exist, create it
+        if not os.path.exists(self.DIR_CHROMA):
+            os.makedirs(self.DIR_CHROMA)
+
+        # Set the logger
         if Scraper._logger == None:
             Scraper._logger = self.config.getLogger()
 
@@ -57,7 +69,6 @@ class Scraper:
 
         # initialize other objects
         self.dict_done_urls = set()
-
 
     def get_config(self):
         return self.config
@@ -78,17 +89,29 @@ class Scraper:
             print('Could not write the following PDF: ' + url)
             print(ex)
 
-    def extract_text(self, soup):
-        # Removing script and style elements
-        for script_or_style in soup(['script', 'style']):
-            script_or_style.extract()
-        # Getting text
-        text = soup.get_text()
-        # Removing whitespace
-        text = '\n'.join(line.strip() for line in text.strip().splitlines() if line.strip())
-        return text
+    def extract_text(self, soup: BeautifulSoup) -> str:
 
-    def scrape_site(self, domain)-> None:
+        self._logger.debug("Extract text")
+        # List of tags to be removed directly
+        for tag in soup(['script', 'style', 'meta', 'link', 'noscript', 'cdata']):
+            tag.decompose()
+
+        # Class names that indicate elements to be removed
+        classes_to_remove = ['footer', 'header', 'nav', 'aside', 'sidebar', 'menu']
+        for class_name in classes_to_remove:
+            for div in soup.find_all("div", class_=class_name):
+                div.decompose()
+
+        # Get the text from the page
+        items = [item.text for item in soup.select('p, ol li')]
+        # turn items into string
+        text = ' '.join(items)
+
+        # Removing extra spaces and joining text
+        cleaned_text = '\n'.join(line.strip() for line in text.strip().splitlines() if line.strip())
+        return cleaned_text
+
+    def scrape_site(self, domain) -> None:
 
         # Get the list of URL from website
         urlsToScrape = utils.get_urls_from_sitemap(domain)
@@ -105,7 +128,7 @@ class Scraper:
             try:
                 self.scrape(i)
             except Exception as e:
-                self._logger.debug('eeeeeeeeeeeeeeeeeeeeeee Could not scrape' + str(i))
+                self._logger.debug('ERROR Could not scrape' + str(i))
                 self._logger.debug(e)
                 self.fileErrors.writelines([i])
 
@@ -117,6 +140,27 @@ class Scraper:
         self.fileErrors.close()
         self.fileParsed.close()
 
+    def should_skip_file(self, file_extension: str) -> bool:
+
+        self._logger.debug(f'File extension: {file_extension}')
+        file_extension = file_extension.lower()
+
+        # List of non-text file extensions to skip
+        non_text_extensions = {
+            '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff',  # Images
+            '.zip', '.rar', '.tar', '.gz', '.7z',  # Archives
+            '.mp3', '.wav', '.ogg', '.m4a', '.flac',  # Audio
+            '.mp4', '.avi', '.mkv', '.flv', '.mov',  # Video
+            '.xls', '.xlsx', '.ods',  # Spreadsheets
+            '.ppt', '.pptx', '.odp'
+            # ... add other non-text extensions here as needed
+        }
+
+        # Skip if the file extension is in the list of non-text extensions
+        if file_extension in non_text_extensions:
+            return True
+
+        return False
 
     def scrape(self, url, visited=None) -> None:
         """
@@ -136,26 +180,30 @@ class Scraper:
 
         # Parse the original URL to get the domain
         original_domain = urlparse(url).netloc
-
         self._logger.debug(f'Scraping {url}')
-        transformed_url = utils.transform_url(url)
 
+        # Transform the URL to a filename
+        transformed_url = utils.transform_url(url)
         self._logger.debug(f'Transformed {transformed_url}')
+
+        # Add the URL to the set of visited URLs
         visited.add(url)  # Mark the URL as visited
         self.dict_done_urls.add(url)
 
+        # Get the filename and extension
         filename, filename_without_extension, file_extension = utils.get_filename_and_extension(url)
 
-        if (file_extension == '.jpg') or (file_extension == '.jpeg') or (
-                file_extension == '.png') or (
-                file_extension == '.zip') or (
-                file_extension == '.mp3'):
-            self._logger.debug(f'Skipping file: {filename}')
+        # Skip if the file extension is not a text file
+        if self.should_skip_file(file_extension):
+            self._logger.debug(f'------ Skipping file: {filename}')
             return
 
+        # If the file is .pdf, then fetch it and store it
         if file_extension == '.pdf':
             dir_filename = self.DIR_SCRAPED + filename
-            self.fetch_pdf(url, dir_filename )
+            self.fetch_pdf(url, dir_filename)
+
+            # Store the text and its embeddings in the vector database
             if usevecrtordb:
                 vectorstore.VectorDB().split_embed_store(dir_filename, '.pdf')
             return
@@ -168,15 +216,26 @@ class Scraper:
             self.fileErrors.write(str(url + '/n'))
             return
 
+        # If the fetch failed, log the error and return
+        if response.status_code >= 400:
+            self._logger.error(f"Failed to retrieve {url}: {response.status_code}")
+            self.fileErrors.write(str(url + '/n'))
+            return
+
         # If fetch was successful, parse the page with BeautifulSoup
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        # Extract all the text for current URL
+        # Extract the text from the page
         url_text = self.extract_text(soup)
+        if (url_text is None) or (url_text == ''):
+            self._logger.debug(f'No text found for {url}')
+            self._logger.error(f'No text found for {url}')
+            return
 
-        # writeScrapedContent
+        # Write scraped text to file
         utils.write_text_to_file(self.DIR_SCRAPED + transformed_url + '.txt', url_text)
 
+        # Store the text and its embeddings in the vector database
         if usevecrtordb:
             vectorstore.VectorDB().split_embed_store(self.DIR_SCRAPED + transformed_url + '.txt', '.txt')
 
@@ -197,23 +256,14 @@ class Scraper:
             if link not in visited and link_domain == original_domain:
                 self.scrape(link, visited)  # Recursively scrape each link
 
+
 """
 MAIN
 This is the entry point for the scraper
 """
 if __name__ == '__main__':
-
-    scraper = Scraper('./config_cdc.yaml')
+    scraper = Scraper('./config_city_of_orlando.yaml')
     scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
 
-
-    #scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
-    #scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')
-
-
-
-
-
-
-
-
+    # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
+    # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')

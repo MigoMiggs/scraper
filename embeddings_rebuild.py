@@ -6,9 +6,10 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTex
 from langchain.document_loaders import PyPDFLoader, TextLoader, PyPDFium2Loader, PDFMinerPDFasHTMLLoader
 from bs4 import BeautifulSoup
 from langchain.schema.document import Document
+import nltkpip
 
 # initialize standard logger in debug mode
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 
 def get_file_list(directory_path) -> list:
@@ -49,32 +50,53 @@ def extract_text(soup: BeautifulSoup) -> str:
     return cleaned_text
 
 
+def is_dense(document, min_tokens=300):
+    content = document.page_content
+    tokens = nltk.word_tokenize(content)
+    return len(tokens) > min_tokens
+
+
+
 def split_embed_store(splitter: RecursiveCharacterTextSplitter, db: Chroma, filename: str, ext: str) -> None:
     logger = logging.getLogger()
-    logger.debug("Split, embed and store " + filename)
+    logger.info("Split, embed and store " + filename)
 
     loader = None
     try:
         if ext == '.pdf':
             # loader = PyPDFium2Loader(filename)
-            loader = PDFMinerPDFasHTMLLoader(filename)
-            data = loader.load()[0]  # entire PDF is loaded as a single Document
-            soup = BeautifulSoup(data.page_content, 'html.parser')
-
-            # extract text from soup
-            text = extract_text(soup)
-
-            # split text
-            text_splitter_string = CharacterTextSplitter(chunk_size=500, chunk_overlap=100)
-            docs = [Document(page_content=x) for x in text_splitter_string.split_text(text)]
-
+            loader = PyPDFium2Loader(file_path=filename, extract_images=False)
             logger.debug('Load PDF')
+
         else:
             loader = TextLoader(filename)
             logger.debug('Load Text')
         if loader is not None:
-            docs = loader.load_and_split(splitter)
-            db.add_documents(documents=docs)
+            # docs = loader.load_and_split(splitter)
+
+            # load the documents without split
+            docs = loader.load()
+
+            # remove the documents that are not dense
+            docs = [doc for doc in docs if is_dense(doc)]
+
+            if (len(docs)) == 0:
+                logger.info(f'No dense documents in {filename}')
+                return
+
+            split_documents = []
+            # remove from each document lines that are too short
+            for doc in docs:
+                lines = doc.page_content.split('\n')
+                lines = [line for line in lines if len(line) > 50]
+                doc.page_content = '\n'.join(lines)
+
+            # split the documents
+            splitdocs = splitter.split_documents(docs)
+            split_documents.append(splitdocs)
+
+            # embed and store
+            db.add_documents(documents=splitdocs)
     except Exception as e:
         logger.error(f'Failed to split and embed: {filename}')
         logger.error(f'Exception: {e}')
@@ -96,11 +118,12 @@ if __name__ == "__main__":
     chroma_db = Chroma(persist_directory="./chroma_clean_ada", embedding_function=embeddings)
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500,
-        chunk_overlap=150
+        chunk_size=1000,
+        chunk_overlap=100
     )
 
-    files_to_process = {'city-of-orlando-fy2003-2004-budget-book.pdf'}
+    # files_to_process = {'city-of-orlando-fy2003-2004-budget-book.pdf'}
+    # files_to_process = {'www_orlando_gov-Parks-the-Environment-Directory-Songbird-Park.txt'}
 
     # iterate over the files
     for filename in files_to_process:

@@ -1,13 +1,14 @@
 import settings
 from settings import Config
 import langchain.embeddings
-import openai
 from urllib.parse import urljoin, urlparse
 import utils
 import requests
 import os
 from bs4 import BeautifulSoup
 import vectorstore
+from xml.etree import ElementTree as ET
+import sys
 
 
 class Scraper:
@@ -35,6 +36,9 @@ class Scraper:
         return super().__new__(cls)
 
     def __init__(self, config_file_path='./config.yaml'):
+        """
+        Constructor
+        """
 
         # Laod the configuration to be available to the whole system
         self.config = Config(config_file_path)
@@ -52,12 +56,8 @@ class Scraper:
             os.makedirs(self.DIR_CHROMA)
 
         # Set the logger
-        if Scraper._logger == None:
+        if Scraper._logger is None:
             Scraper._logger = self.config.getLogger()
-
-        # set the api key for open ai
-        openai.api_key = self.config.get_open_ai_key()
-        self._logger.debug("Open API key set")
 
         self._logger.debug("Remove url files from previous runs")
         if os.path.exists(self.FILE_ERRORS):
@@ -71,6 +71,10 @@ class Scraper:
         self.dict_done_urls = set()
 
     def get_config(self):
+        """
+        Returns the configuration
+        :return: the configuration
+        """
         return self.config
 
     def fetch_pdf(self, url: str, destination: str) -> None:
@@ -85,11 +89,17 @@ class Scraper:
             response = requests.get(url)
             with open(destination, 'wb') as output_file:
                 output_file.write(response.content)
+
         except Exception as ex:
             print('Could not write the following PDF: ' + url)
             print(ex)
 
     def extract_text(self, soup: BeautifulSoup) -> str:
+        """
+        Extracts the text from the page, trying to ignore the header, footer, and other non-text elements
+        :param soup:
+        :return:
+        """
 
         self._logger.debug("Extract text")
         # List of tags to be removed directly
@@ -112,12 +122,24 @@ class Scraper:
         return cleaned_text
 
     def scrape_site(self, domain) -> None:
+        """
+        Scrapes the given domain
+        :param domain:
+        :return:
+        """
+
+        self._logger.debug("Scrape site")
+        sitemap_list = self.fetch_sitemaps(domain)
+
+        final_urls_to_scrape = {}
 
         # Get the list of URL from website
-        urlsToScrape = utils.get_urls_from_sitemap(domain)
+        for sitemap in sitemap_list:
+            urls_to_scrape = utils.get_urls_from_sitemap(sitemap)
+            final_urls_to_scrape.update(urls_to_scrape)
 
         # Get urls as a list
-        keys = urlsToScrape.keys()
+        keys = final_urls_to_scrape.keys()
 
         self.fileErrors = open(self.FILE_ERRORS, 'a')
         self.fileParsed = open(self.FILE_SCRAPED, 'a')
@@ -139,6 +161,49 @@ class Scraper:
 
         self.fileErrors.close()
         self.fileParsed.close()
+
+    def fetch_sitemaps(self, domain) -> list:
+
+        robots_url = f"{domain}/robots.txt"
+        sitemap_urls = []
+        try:
+            # Step 1: Fetch the robots.txt file
+            response = requests.get(robots_url)
+            response.raise_for_status()  # raise an error if the response contains an HTTP error status code
+            lines = response.text.splitlines()
+
+            # Step 2: Extract the list of sitemaps.xml files
+            for line in lines:
+                if line.startswith("Sitemap:"):
+                    sitemap_url = line.split("Sitemap:")[1].strip()
+                    sitemap_urls.append(sitemap_url)
+
+            # Step 3: Iterate through the list and open each file
+            all_sitemaps = []
+            for sitemap_url in sitemap_urls:
+                response = requests.get(sitemap_url)
+                if response.status_code != 200:
+                    continue
+
+                root = ET.fromstring(response.content)
+
+                # Step 4: Check if it's a sitemapindex or a sitemap
+                if root.tag.endswith("sitemapindex"):
+                    # Step 5: If it's a sitemapindex, extract each sitemap
+                    for sitemap in root.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}sitemap"):
+                        loc = sitemap.find("{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
+                        if loc is not None:
+                            all_sitemaps.append(loc.text)
+                else:
+                    all_sitemaps.append(sitemap_url)
+
+            # Step 6: Return the list of sitemap.xml urls
+            return all_sitemaps
+
+        except requests.RequestException as e:
+            print(f"Error fetching data from {domain}: {e}")
+            return []
+
 
     def should_skip_file(self, file_extension: str) -> bool:
 
@@ -229,7 +294,6 @@ class Scraper:
         url_text = self.extract_text(soup)
         if (url_text is None) or (url_text == ''):
             self._logger.debug(f'No text found for {url}')
-            self._logger.error(f'No text found for {url}')
             return
 
         # Write scraped text to file
@@ -262,7 +326,7 @@ MAIN
 This is the entry point for the scraper
 """
 if __name__ == '__main__':
-    scraper = Scraper('./config_city_of_orlando.yaml')
+    scraper = Scraper('./config_cdc.yaml')
     scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
 
     # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')

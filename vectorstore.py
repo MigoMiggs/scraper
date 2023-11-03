@@ -4,20 +4,27 @@ from langchain.embeddings import HuggingFaceEmbeddings, OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 import langchain
 from langchain.document_loaders import PyPDFLoader, TextLoader
+from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+import nltk
+import openai
 
 
 class VectorDB:
+    """
+    This class is responsible for loading and managing the vector database
+    """
+
     _instance = None
     vectordb = None
     config = None
-    persistance_path = ''
+    persistance_path: str = ''
     logger = None
     embeddings: langchain.embeddings = None
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1500,
-        chunk_overlap=150
+        chunk_size=1000,
+        chunk_overlap=100
     )
 
     def __new__(cls):
@@ -26,7 +33,10 @@ class VectorDB:
         return cls._instance
 
     def __init__(self):
-        """Loads configuration data from file if not loaded already."""
+        """
+        Constructor
+        """
+
         if not hasattr(self, 'initialized'):
             self.initialized = True
 
@@ -36,6 +46,10 @@ class VectorDB:
             self.embeddings: langchain.embeddings
 
             self.logger.debug("Load embeddings")
+
+            # set the api key for open ai
+            openai.api_key = self.config.get_open_ai_key()
+            self.logger.debug("Open API key set")
 
             # Load the embeddings
             if self.config.get_embeddings()["type"] == 'HUGGING_FACE':
@@ -53,7 +67,26 @@ class VectorDB:
             self.logger.debug("Embeddings Loaded")
             self.vectordb = Chroma(persist_directory=self.persistance_path, embedding_function=self.embeddings)
 
+    def is_dense(self, document: Document, min_tokens=300):
+        """
+        Check if a document is dense enough to be split
+
+        :param document:
+        :param min_tokens:
+        :return:
+        """
+
+        content = document.page_content
+        tokens = nltk.word_tokenize(content)
+        return len(tokens) > min_tokens
+
     def split_embed_store(self, filename: str, ext: str) -> None:
+        """
+        Split, embed and store a file into the vector database
+        :param filename:
+        :param ext:
+        :return:
+        """
 
         self.logger.debug("Split, embed and store " + filename)
 
@@ -65,12 +98,36 @@ class VectorDB:
             else:
                 loader = TextLoader(filename)
                 self.logger.debug('Load Text')
+
             if loader is not None:
-                docs = loader.load_and_split(self.text_splitter)
-                self.vectordb.add_documents(documents=docs)
+
+                # load the documents without split
+                docs = loader.load()
+
+                # remove the documents that are not dense
+                docs = [doc for doc in docs if self.is_dense(doc)]
+
+                if (len(docs)) == 0:
+                    self.logger.info(f'No dense documents in {filename}')
+                    return
+
+                # remove from each document lines that are too short
+                for doc in docs:
+                    lines = doc.page_content.split('\n')
+                    lines = [line for line in lines if len(line) > 50]
+                    doc.page_content = '\n'.join(lines)
+
+                # split the documents
+                splitdocs = self.text_splitter.split_documents(docs)
+                self.vectordb.add_documents(documents=splitdocs)
+
         except Exception as e:
             self.logger.error(f'Failed to split and embed: {filename}')
             self.logger.error(f'Exception: {e}')
 
     def get_vector_db(self):
+        """
+
+        :return:
+        """
         return self.vectordb

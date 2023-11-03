@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 
 import settings
 
-
 logger = logging.getLogger(app.Scraper.__name__)
+
 
 def get_filename_and_extension(url: str):
     parsed_url = urlparse(url)
@@ -62,26 +62,23 @@ def normalize_url(url):
     )
     return normalized_url
 
-def get_urls_from_sitemap(url: str) -> dict:
-    sitemap_uri = settings.Config().data['site']['sitemap']
-    url_sitemap = url + sitemap_uri
+
+def get_urls_from_sitemap(url_sitemap: str) -> dict:
+
     logger = logging.getLogger('app.Scraper')
 
+    urls_from_xml = {}
     response = requests.get(url_sitemap)
     if response.status_code == 200:
         parcala = BeautifulSoup(response.content, "xml")
     else:
         logger.debug(f'Failed to retrieve sitemap: {response.status_code}')
-        exit()
+        return urls_from_xml
 
-    urls_from_xml = {}
     loc_tags = parcala.find_all('loc')
 
     for loc in loc_tags:
         urls_from_xml[loc.text] = ''
-
-    # Add the root that was passed as parameter just in case
-    urls_from_xml[url] = ''
 
     logger.debug(f'Number of URLs to walk: ' + str(len(urls_from_xml)))
     return urls_from_xml

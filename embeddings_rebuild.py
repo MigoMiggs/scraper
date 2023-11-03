@@ -2,11 +2,10 @@ import os
 import logging
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
-from langchain.document_loaders import PyPDFLoader, TextLoader, PyPDFium2Loader, PDFMinerPDFasHTMLLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.document_loaders import TextLoader, PyPDFium2Loader
 from bs4 import BeautifulSoup
-from langchain.schema.document import Document
-import nltkpip
+import nltk
 
 # initialize standard logger in debug mode
 logging.basicConfig(level=logging.INFO)

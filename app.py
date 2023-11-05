@@ -2,14 +2,17 @@ import settings
 from settings import Config
 import langchain.embeddings
 from urllib.parse import urljoin, urlparse
-import utils
+from scraper.utilities import utils
 import requests
 import os
 from bs4 import BeautifulSoup
 import vectorstore
 from xml.etree import ElementTree as ET
-import sys
-
+from utilities.utils import (
+    write_text_to_file,
+    get_urls_from_sitemap,
+    url_to_filename
+)
 
 class Scraper:
     """
@@ -133,13 +136,19 @@ class Scraper:
 
         final_urls_to_scrape = {}
 
+        # make sure domain is in the list
+        final_urls_to_scrape[domain] = domain
+
         # Get the list of URL from website
         for sitemap in sitemap_list:
-            urls_to_scrape = utils.get_urls_from_sitemap(sitemap)
+            urls_to_scrape = get_urls_from_sitemap(sitemap)
             final_urls_to_scrape.update(urls_to_scrape)
 
         # Get urls as a list
         keys = final_urls_to_scrape.keys()
+
+        # log the total number of urls scraped
+        self._logger.debug(f'========= total urls to scrape {len(keys)}')
 
         self.fileErrors = open(self.FILE_ERRORS, 'a')
         self.fileParsed = open(self.FILE_SCRAPED, 'a')
@@ -178,6 +187,10 @@ class Scraper:
                     sitemap_url = line.split("Sitemap:")[1].strip()
                     sitemap_urls.append(sitemap_url)
 
+            # If no sitemaps were found, add the default sitemap.xml
+            if len(sitemap_urls) == 0:
+                sitemap_urls.append(f"{domain}/sitemap.xml")
+
             # Step 3: Iterate through the list and open each file
             all_sitemaps = []
             for sitemap_url in sitemap_urls:
@@ -215,7 +228,7 @@ class Scraper:
             '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff',  # Images
             '.zip', '.rar', '.tar', '.gz', '.7z',  # Archives
             '.mp3', '.wav', '.ogg', '.m4a', '.flac',  # Audio
-            '.mp4', '.avi', '.mkv', '.flv', '.mov',  # Video
+            '.mp4', '.avi', '.mkv', '.flv', '.mov', '.wmv',  # Video
             '.xls', '.xlsx', '.ods',  # Spreadsheets
             '.ppt', '.pptx', '.odp'
             # ... add other non-text extensions here as needed
@@ -238,6 +251,7 @@ class Scraper:
             visited = set()  # Set to keep track of visited URLs
 
         if url in self.dict_done_urls:
+            self._logger.debug(f'URL already done, skipping: {url}')
             return
 
         self._logger.debug(f'About to scrape: {url} Number: {len(self.dict_done_urls)}')
@@ -248,7 +262,7 @@ class Scraper:
         self._logger.debug(f'Scraping {url}')
 
         # Transform the URL to a filename
-        transformed_url = utils.transform_url(url)
+        transformed_url = url_to_filename(url)
         self._logger.debug(f'Transformed {transformed_url}')
 
         # Add the URL to the set of visited URLs
@@ -265,7 +279,7 @@ class Scraper:
 
         # If the file is .pdf, then fetch it and store it
         if file_extension == '.pdf':
-            dir_filename = self.DIR_SCRAPED + filename
+            dir_filename = os.path.join(self.DIR_SCRAPED, filename)
             self.fetch_pdf(url, dir_filename)
 
             # Store the text and its embeddings in the vector database
@@ -297,11 +311,11 @@ class Scraper:
             return
 
         # Write scraped text to file
-        utils.write_text_to_file(self.DIR_SCRAPED + transformed_url + '.txt', url_text)
+        write_text_to_file(os.path.join(self.DIR_SCRAPED, transformed_url + '.txt'), url_text)
 
         # Store the text and its embeddings in the vector database
         if usevecrtordb:
-            vectorstore.VectorDB().split_embed_store(self.DIR_SCRAPED + transformed_url + '.txt', '.txt')
+            vectorstore.VectorDB().split_embed_store(os.path.join(self.DIR_SCRAPED, transformed_url + '.txt'), '.txt')
 
         # Extract all links
         for a_tag in soup.find_all('a', href=True):
@@ -326,8 +340,9 @@ MAIN
 This is the entry point for the scraper
 """
 if __name__ == '__main__':
-    scraper = Scraper('./config_cdc.yaml')
-    scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
+    scraper = Scraper('./config_fema.yaml')
+    #scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
 
     # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
     # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')
+    scraper.scrape('https://www.fema.gov/press-release/20210318/fema-awards-florida-department-health-nearly-11-million-hurricane-irma')

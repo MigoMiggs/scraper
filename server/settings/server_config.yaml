@@ -10,3 +10,8 @@ kbs:
   name: "chroma_cheap"
   directory: "../chroma_cheap"
   embeddings: "OPEN_AI"
+
+azure:
+    endpoint: "https://sondertest.openai.azure.com/"
+    version: "2023-07-01-preview"
+    type: "azure"

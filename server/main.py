@@ -1,16 +1,17 @@
-from typing import Dict
+
 from fastapi import FastAPI, Request
 from contextlib import asynccontextmanager
 import logging.config
 import os
 import uvicorn
 import yaml
-from server.kb.KB import KB
+from scraper.server.kb.KB import KB
 from dotenv import load_dotenv, find_dotenv
-import openai
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from fastapi.middleware.cors import CORSMiddleware
+from scraper.utilities.utils import get_gpt_model, get_retriever_from_type
+
 
 description = """
 IBTS Assistant REST API answers questions against knowledge bases built from scraping sites.
@@ -24,8 +25,7 @@ with open('../logging.yaml', 'r') as file:
     logger = logging.getLogger('server')
     logger.debug("Logger has been setup")
 
-_ = load_dotenv(find_dotenv()) # read local .env file
-pp = os.getenv('LANGCHAIN_API_KEY')
+_ = load_dotenv(find_dotenv())  # read local .env file
 
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
@@ -64,7 +64,7 @@ def load_config() -> None:
             config = yaml.safe_load(file)
 
 
-def load_vector_dbs() -> dict[str, KB] :
+def load_vector_dbs() -> dict[str, KB]:
     knowledge_bases = config['kbs']
     vectordbs: dict[str, KB] = {}
 
@@ -125,8 +125,7 @@ async def read_root() -> dict:
 
 
 @app.get("/question")
-async def get_question(request: Request, question: str, kb: str='chroma', llm: str='gpt-3.5-turbo'):
-
+async def get_question(request: Request, question: str, kb: str = 'chroma', llm: str = 'gpt-3.5-turbo'):
     assert isinstance(request.app.kbs, object)
     application = request.app
     stores = application.kbs
@@ -139,7 +138,7 @@ async def get_question(request: Request, question: str, kb: str='chroma', llm: s
 
     # Show the total documents to make sure we got the right db
     logger.debug(f"Getting answer to question: {question}")
-    #question = question + ' Describe step by step how you got to your answer from the existing information.'
+    # question = question + ' Describe step by step how you got to your answer from the existing information.'
 
     result = 'could not get result'
 
@@ -148,15 +147,15 @@ async def get_question(request: Request, question: str, kb: str='chroma', llm: s
         logger.debug("No KB found.")
         return {"answer": result}
 
-    retriever = vc.as_retriever()
-    model = ChatOpenAI(model_name=llm, temperature=0)
+    model = get_gpt_model(use_azure=False, model_name=llm, temperature=0)
+    retriever = get_retriever_from_type('standard', vc, k=6, llm=model)
 
     qa_chain = RetrievalQA.from_chain_type(
         model,
         retriever=retriever
     )
 
-    #question = "to what extent is social equity included in the Orlando Resilience Plan? and in what ways is it included?"
+    # question = "to what extent is social equity included in the Orlando Resilience Plan? and in what ways is it included?"
     result = qa_chain({"query": question})
     answer = result['result']
 

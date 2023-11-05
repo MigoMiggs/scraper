@@ -3,12 +3,11 @@ import logging
 from langchain.embeddings import HuggingFaceEmbeddings, OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 import langchain
-from langchain.document_loaders import PyPDFLoader, TextLoader
+from langchain.document_loaders import PyPDFium2Loader, TextLoader
 from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import nltk
 import openai
-
 
 class VectorDB:
     """
@@ -51,16 +50,25 @@ class VectorDB:
             openai.api_key = self.config.get_open_ai_key()
             self.logger.debug("Open API key set")
 
-            # Load the embeddings
+           # load the embeddings model based on the config file setting
             if self.config.get_embeddings()["type"] == 'HUGGING_FACE':
+
+                # load the MiniLM model from Hugging Face
                 embeddings_model_name = "sentence-transformers/all-MiniLM-L6-v2"
                 self.embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
+
             elif self.config.get_embeddings()["type"] == 'OPEN_AI':
+
+                # load the Open AI model
                 self.embeddings = OpenAIEmbeddings()
             elif self.config.get_embeddings()["type"] == 'HUGGING_FACE_GTE_BASE':
+
+                # load the GTE mode from Hugging Face
                 embeddings_model_name = 'thenlper/gte-base'
                 self.embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
             else:
+
+                # unknown embeddings setting
                 self.logger.error("Unknown embeddings setting.")
                 raise Exception("Unknown embeddings setting.")
 
@@ -93,7 +101,7 @@ class VectorDB:
         loader = None
         try:
             if ext == '.pdf':
-                loader = PyPDFLoader(filename)
+                loader = PyPDFium2Loader(file_path=filename, extract_images=False)
                 self.logger.debug('Load PDF')
             else:
                 loader = TextLoader(filename)

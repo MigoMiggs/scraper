@@ -30,7 +30,7 @@ def extract_questions_from_pdf(pdf_path):
     return questions
 
 
-pdf_path = "Orlando Pre-Assessment.pdf"
+pdf_path = "test-data/Orlando Pre-Assessment.pdf"
 questions = extract_questions_from_pdf(pdf_path)
 for q in questions:
     print(q['question'])

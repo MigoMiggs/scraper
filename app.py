@@ -23,7 +23,6 @@ class Scraper:
     embeddings: langchain.embeddings = None
     config: settings.Config
     dict_done_urls: set
-    fileErrors = None
     fileParsed = None
     total_urls_scraped = 0
     _logger = None
@@ -240,7 +239,7 @@ class Scraper:
 
         return False
 
-    def scrape(self, url, visited=None) -> None:
+    def scrape(self, url, visited=None, referer=None) -> None:
         """
         Scrapes the given URL, and it crawls the URL via the links within the page
         :param url: the URL to scrape
@@ -289,16 +288,23 @@ class Scraper:
 
         # Fetch the page
         try:
-            response = requests.get(url, timeout=10)
+            # Fetch the page
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
+            }
+
+            if referer is not None:
+                headers['Referer'] = referer
+
+            response = requests.get(url, headers=headers)
         except requests.exceptions.RequestException as e:
+
             self._logger.error(f"Failed to retrieve {url}: {e}")
-            self.fileErrors.write(str(url + '/n'))
             return
 
         # If the fetch failed, log the error and return
         if response.status_code >= 400:
             self._logger.error(f"Failed to retrieve {url}: {response.status_code}")
-            self.fileErrors.write(str(url + '/n'))
             return
 
         # If fetch was successful, parse the page with BeautifulSoup
@@ -332,7 +338,7 @@ class Scraper:
 
             # Skip already visited links, and limit to same domain
             if link not in visited and link_domain == original_domain:
-                self.scrape(link, visited)  # Recursively scrape each link
+                self.scrape(link, visited, referer=url)  # Recursively scrape each link
 
 
 """
@@ -340,9 +346,9 @@ MAIN
 This is the entry point for the scraper
 """
 if __name__ == '__main__':
-    scraper = Scraper('./config_fema.yaml')
-    #scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
+    scraper = Scraper('./config_coo.yaml')
+    scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
 
     # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
     # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')
-    scraper.scrape('https://www.fema.gov/press-release/20210318/fema-awards-florida-department-health-nearly-11-million-hurricane-irma')
+    #scraper.scrape('https://www.fema.gov/press-release/20210318/fema-awards-florida-department-health-nearly-11-million-hurricane-irma')

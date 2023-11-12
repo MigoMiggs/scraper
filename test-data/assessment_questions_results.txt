@@ -1,0 +1,12 @@
+Question ID: 1a
+Question: To what extent is the relationship between climate hazards and social vulnerability/inequity understood among city leaders and staff?
+Answer with explanation:
+I would choose answer 3 (Medium) - The relationship between climate hazards and social inequity is familiar to select city staff or elected officials.
+
+This answer is based on the provided context that mentions the completion of a Climate Vulnerability Assessment in 2017, which investigated the relationship between hazards and risks from the changing climate, including the impact on key sectors of employment and demographics. It also mentions the development of a resilience plan, which indicates that city staff and elected officials are aware of the need to address climate hazards and their impact on social vulnerability and inequity. However, the context does not provide information on the extent of understanding among all city staff and elected officials, hence the choice of answer 3.
+Question ID: 1b
+Question: Are there programs in place to support education and knowledge transfer of ECR issues?
+Answer with explanation:
+3 (Medium) Educational and outreach programs around equitable climate resilience are being developed or in early stages of implementation.
+
+Explanation: The context mentions that education and outreach efforts are being conducted to support disadvantaged communities in understanding the benefits of e-mobility. It also states that these efforts are delivered through trusted channels and messengers and are accessible to multilingual communities. However, it does not provide information on the stage of implementation or the impact of these programs, indicating that they are still in the development or early implementation stages.

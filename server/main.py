@@ -125,7 +125,11 @@ async def read_root() -> dict:
 
 
 @app.get("/question")
-async def get_question(request: Request, question: str, kb: str = 'chroma', llm: str = 'gpt-3.5-turbo'):
+async def get_question(request: Request,
+                       question: str,
+                       kb: str = 'chroma',
+                       llm: str = 'gpt-3.5-turbo'):
+
     assert isinstance(request.app.kbs, object)
     application = request.app
     stores = application.kbs
@@ -147,7 +151,7 @@ async def get_question(request: Request, question: str, kb: str = 'chroma', llm:
         logger.debug("No KB found.")
         return {"answer": result}
 
-    model = get_gpt_model(use_azure=False, model_name=llm, temperature=0)
+    model = get_gpt_model(use_azure=True, model_name=llm, temperature=0)
     retriever = get_retriever_from_type('standard', vc, k=6, llm=model)
 
     qa_chain = RetrievalQA.from_chain_type(
@@ -161,6 +165,16 @@ async def get_question(request: Request, question: str, kb: str = 'chroma', llm:
 
     logger.debug(f'Answer: {answer}')
     return {"answer": answer}
+
+@app.get("/question_answer")
+async def get_question_answer(request: Request,
+                       question: str,
+                       answers: str,
+                       kb: str = 'chroma',
+                       llm: str = 'gpt-3.5-turbo'):
+
+    return {"answer": "answer"}
+
 
 
 if __name__ == "__main__":

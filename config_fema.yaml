@@ -1,0 +1,19 @@
+logging:
+  level: "INFO"
+  logfile: "./scraperlog"
+
+embeddings:
+  type: "OPEN_AI"
+
+site:
+  url: "https://fema.gov"
+  sitemap: "/niosh/mining/sitemap.xml"
+  name: "fema"
+  scraped-path: "./scraped_fema/"
+  use-vector-db: True
+
+openai:
+  key: "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"
+
+vectordb:
+  chroma-path: "./chroma_clean_fema_ada"

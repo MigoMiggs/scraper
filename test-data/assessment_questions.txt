@@ -1,0 +1,24 @@
+Question:
+1a. To what extent is the relationship between climate hazards and social vulnerability/inequity understood among city leaders and staff?
+
+Answers:
+1 (Low) The relationship between climate hazards and social inequity has not been explored by staff or elected officials
+2
+3 (Medium) The relationship between climate hazards and social inequity is familiar to select city staff or elected
+officials
+4
+5 (High) City staff and elected officials are well-versed in the concepts and taxonomy of the relationship between climate hazards and social inequity
+6 Don't know
+-----
+Question:
+1b. Are there programs in place to support education and knowledge transfer of ECR issues?
+Answers:
+1 (Low) Educational and outreach programs around equitable climate resilience do not exist
+2
+3 (Medium) Educational and outreach programs around equitable climate resilience are being developed or in early stages of implementation
+4
+5 (High) Educational and outreach programs are well-developed, are in the field, and are showing positive impact
+6 Don't know
+-----
+Question:
+1c. To what extent are city staff and elected officials aware of the social inequities in their city?

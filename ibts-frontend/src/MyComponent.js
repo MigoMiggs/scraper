@@ -51,7 +51,7 @@ const MyComponent = () => {
         <button type="submit" disabled={loading}>Fetch Answer</button>
       </form>
       {loading ? (
-        <div className="loading-spinner">spinnnnnnn</div>
+        <div className="loading-spinner"></div>
       ) : (
         answer && (
           // the div below should be fixed size 

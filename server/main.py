@@ -10,7 +10,7 @@ from dotenv import load_dotenv, find_dotenv
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from fastapi.middleware.cors import CORSMiddleware
-from scraper.utilities.utils import get_gpt_model, get_retriever_from_type
+from scraper.utilities.utils import get_gpt_model, get_retriever_from_type, get_prompt_for_multianswer
 
 
 description = """
@@ -172,8 +172,38 @@ async def get_question_answer(request: Request,
                        answers: str,
                        kb: str = 'chroma',
                        llm: str = 'gpt-3.5-turbo'):
+    application = request.app
+    stores = application.kbs
+    logger = application.logger
 
-    return {"answer": "answer"}
+    logger.debug(f"Getting answer to question: {question}")
+    logger.debug(f"Choosing answer from answers: {answers}")
+
+    # Get the vbs from the dict
+    vc = stores[kb].get_db()
+
+    # Make sure that our retriever gets back 6 results
+    model = get_gpt_model(use_azure=True, model_name=llm, temperature=0)
+    retriever = get_retriever_from_type('standard', vc, k=6, llm=model)
+
+    # Get the prompt for the multi-answer model
+    chat_prompt = get_prompt_for_multianswer()
+
+    # Create the chain
+    qa_chain = RetrievalQA.from_chain_type(
+        model,
+        retriever=retriever,
+        chain_type_kwargs={
+            "prompt": chat_prompt
+        },
+        return_source_documents=True
+    )
+
+    question += '\n\n' + answers
+    result = qa_chain({"query": question})
+    answer = result['result']
+
+    return {"answer": answer}
 
 
 

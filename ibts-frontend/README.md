@@ -8,12 +8,15 @@ Run through the following setup steps:
 
 ## Things to consider
 
-Had to add the following for the app to run:
+Had to add the following in package.json for the app to run:
 
 "scripts": {
     "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
 }
+
+## Install react-router-dom
+npm install react-router-dom
 
 
 ## Available Scripts

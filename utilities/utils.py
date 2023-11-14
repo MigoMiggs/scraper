@@ -7,6 +7,11 @@ from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
 from urllib.parse import quote, unquote
 import re
 
+from langchain.prompts.chat import (
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+    ChatPromptTemplate
+)
 
 
 def get_gpt_model(use_azure, model_name, temperature=0):
@@ -190,3 +195,29 @@ def parse_assessment_file(file_path):
             })
 
     return data
+
+
+def get_prompt_for_multianswer():
+    system_template = """" \
+    Instructions:
+    * You are an evaluator that knows about Natural Disaster Recovery. \
+    * User will provider a multiple choice question and the possible answers below. \
+    * You will pick the best answer based on the included pieces of context. The questions \
+    will always go from 1 - 6, the 6th answer is always "I don't know." 
+    * Answers 1 - 5 will go from low to high, from the perspecive of how good \
+    the adherence is to the provided question. 
+    * These questions and answers are used for Natural Disaster Readiness. \
+    * The Community Resilience Assessment Framework and Tools (CRAFT) \
+    * Equitable Climate Resilience (ECR) platform is a resource for cities to assess and strengthen their resilience - \
+    the ability to to mitigate, respond to, and recover from crises. Also, after the answer, you will explain how you got to the answer, \ 
+    referrring to the pieces of context that gave you the answer. \n\
+    -------------------- \n\
+    Context:
+    {context}
+    """
+    system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
+
+    human_template = """ {question} """
+    human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
+    chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
+    return chat_prompt

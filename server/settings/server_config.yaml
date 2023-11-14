@@ -10,6 +10,10 @@ kbs:
   name: "chroma_cheap"
   directory: "../chroma_cheap"
   embeddings: "OPEN_AI"
+-
+  name: "chroma_clean_ada"
+  directory: "../chroma_clean_ada"
+  embeddings: "OPEN_AI"
 
 azure:
     endpoint: "https://sondertest.openai.azure.com/"

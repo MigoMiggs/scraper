@@ -30,3 +30,19 @@ vectordb:
 ```
 3. Make sure logging levels are adequate within logging.yaml
 
+4. Make sure you run this in the python console
+
+import nltk
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download('punkt')
+
+
+   

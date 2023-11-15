@@ -8,7 +8,6 @@ from urllib.parse import quote, unquote
 import re
 
 
-
 def get_gpt_model(use_azure, model_name, temperature=0):
     llm_model = None
     if use_azure:

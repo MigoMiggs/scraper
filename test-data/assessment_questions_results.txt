@@ -1,12 +1,294 @@
 Question ID: 1a
 Question: To what extent is the relationship between climate hazards and social vulnerability/inequity understood among city leaders and staff?
 Answer with explanation:
-I would choose answer 3 (Medium) - The relationship between climate hazards and social inequity is familiar to select city staff or elected officials.
+5 (High) City staff and elected officials are well-versed in the concepts and taxonomy of the relationship between climate hazards and social inequity.
 
-This answer is based on the provided context that mentions the completion of a Climate Vulnerability Assessment in 2017, which investigated the relationship between hazards and risks from the changing climate, including the impact on key sectors of employment and demographics. It also mentions the development of a resilience plan, which indicates that city staff and elected officials are aware of the need to address climate hazards and their impact on social vulnerability and inequity. However, the context does not provide information on the extent of understanding among all city staff and elected officials, hence the choice of answer 3.
+Explanation: The context provided mentions that the City's Climate Vulnerability Assessment, completed in 2017, investigated the relationship between hazards and risks from the changing climate, such as the impact of extreme heat on key sectors of employment and demographics. It also mentions that further exploration regarding the impact of climate migration and the ethnically-diverse population is being conducted as part of the development of the City's first-ever resilience plan. Additionally, the context mentions that the Collaborative's resilience work focuses on the three pillars of People, Places, and Prosperity, and that considerations for carbon-reduction and sustainability are part of addressing each pillar. This suggests that city staff and elected officials have a good understanding of the relationship between climate hazards and social inequity.
+
+-----
 Question ID: 1b
 Question: Are there programs in place to support education and knowledge transfer of ECR issues?
 Answer with explanation:
 3 (Medium) Educational and outreach programs around equitable climate resilience are being developed or in early stages of implementation.
 
 Explanation: The context mentions that education and outreach efforts are being conducted to support disadvantaged communities in understanding the benefits of e-mobility. It also states that these efforts are delivered through trusted channels and messengers and are accessible to multilingual communities. However, it does not provide information on the stage of implementation or the impact of these programs, indicating that they are still in the development or early implementation stages.
+
+-----
+Question ID: 1c
+Question: To what extent are city staff and elected officials aware of the social inequities in their city?
+Answer with explanation:
+I would choose answer 5 (High) - The city has facilitated engagement activities with a wide range of stakeholders and vulnerable populations, resulting in an articulated and adopted common vision of ECR.
+
+This choice is based on the provided context that mentions the city's efforts to engage with community leaders and vulnerable populations to establish a common vision for equitable climate resilience. The context also highlights the city's focus on ensuring climate action happens through a just transition approach, engaging communities of color, and addressing concerns such as affordable housing and transportation safety. These efforts indicate a high level of awareness and engagement with social inequities in the city.
+
+-----
+Question ID: 1d
+Question: Does the city have stated ECR goals?
+Answer with explanation:
+Answer: 5 (High) The city has articulated a set of tangible ECR goals
+
+Explanation: Based on the provided context, there are several pieces of information that indicate the city has stated ECR goals:
+
+- The city has established five "pillars" as the operational foundation of the plan, which suggests a comprehensive approach to ECR.
+- The city has implemented various strategies and programs related to sustainability, green infrastructure, and energy conservation, indicating a commitment to ECR.
+- The city has policies and objectives related to sustainability, smart growth, and the protection of key ecosystems, which align with ECR principles.
+- The city has participated in initiatives such as the Mayor's Monarch Pledge and the Bloomberg Center for Public Impact, which further demonstrate a focus on ECR.
+
+Overall, these pieces of context suggest that the city has articulated a set of tangible ECR goals.
+
+-----
+Question ID: 2a
+Question: Is data on social vulnerabilities available and used to inform decision- making?
+Answer with explanation:
+Based on the provided context, the best answer would be 3 (Medium) - Data is available, it informs decision making, and is provided on the city’s website in an easily digestible manner.
+
+The context mentions that the City uses data analysis to identify those who need services and optimize multi-agency coordination of social services to vulnerable populations. This indicates that data on social vulnerabilities is available and used to inform decision-making.
+
+Additionally, the context mentions the use of data visualization and data-driven reports, which suggests that the data is provided in an easily digestible manner. However, there is no mention of multiple data sources or an interactive map/portal, so the answer is not at the highest level of adherence.
+
+-----
+Question ID: 2b
+Question: Is data on climate hazards and risks available and used to inform decision-making?
+Answer with explanation:
+Based on the provided context, the best answer would be 3 (Medium) - Data is available, it informs decision making of policies and projects, and is provided on the city’s website in an easily digestible manner.
+
+The context mentions that Orlando has conducted a Climate Vulnerability Assessment in 2017, which indicates that data on climate hazards and risks is available. This data is used to investigate the relationship between hazards and risks, such as the impact of extreme heat on key sectors of employment and demographics. It is also mentioned that the development of the City's first-ever resilience plan includes further exploration of the impact of climate migration and the city's ethnically-diverse population. This suggests that the data is being used to inform decision-making.
+
+Additionally, the context mentions that the data collected through community engagement and grant-funded partnerships is used to identify key performance indicators and inform the development of climate adaptation goals and strategies. This indicates that the data is being utilized in policy and project decision-making.
+
+Furthermore, the context mentions that the City's Solid Waste division already redacts personal information from public records requests, indicating that there is a consideration for data privacy.
+
+However, it is not explicitly mentioned whether the data is provided on the city's website or in an easily digestible manner. Therefore, the answer is not a 5 (High) but a 3 (Medium).
+
+-----
+Question ID: 2c
+Question: Have social vulnerability assessments been conducted to identify potential climate impacts on vulnerable populations?
+Answer with explanation:
+Answer: 5 (High) A vulnerability assessment has been performed, at the neighborhood scale, within the past 5 years.
+
+Explanation: The context mentions that a Climate Vulnerability Assessment was completed in 2017, which investigated the relationship between hazards and risks from the changing climate, including the impact on key sectors of employment and demographics. This assessment likely included an analysis of social vulnerability, considering factors such as children, the ill, and the elderly. Additionally, the context mentions that further exploration regarding the impact of climate migration and the ethnically-diverse population is currently being conducted as part of the development of the City's first-ever resilience plan. This suggests that a more recent assessment at the neighborhood scale may have been conducted to identify potential climate impacts on vulnerable populations.
+
+-----
+Question ID: 2d
+Question: To what extent are maps and visualization tools available and used?
+Answer with explanation:
+The best answer is 5 (High) Maps and visualization tools are used to communicate the overlap of climate hazards and social vulnerabilities.
+
+This answer is supported by the following pieces of context:
+- The use of Geographic Information System (GIS) is mentioned multiple times, indicating that maps and visualization tools are available.
+- The evaluation and improvement of the community's website to incorporate additional flood protection information suggests the use of maps and visualization tools to communicate climate hazards.
+- The review of floodplains within the city, in conjunction with inventory data, to identify areas where capital projects could be implemented to reduce floodplain impacts indicates the use of maps and visualization tools to communicate the overlap of climate hazards and social vulnerabilities.
+
+-----
+Question ID: 2e
+Question: Has an equity audit been conducted of city programs, policies, and projects?
+Answer with explanation:
+Answer: 5 (High) The city has completed an analysis and audit of programs/policies/and projects, and has taken corrective action to ensure positive impacts on social equity in climate resilience efforts.
+
+Explanation: The context mentions that the city has conducted an equity audit of its programs, policies, and projects. It states that the city used adaptive and targeted outreach efforts to involve marginalized populations and address equity issues. Additionally, the city addressed equity in the plan's performance targets and project evaluation metrics. This indicates that the city has taken corrective action to ensure positive impacts on social equity in climate resilience efforts.
+
+-----
+Question ID: 2f
+Question: Has a natural hazards and climate impact assessment been conducted to
+Answer with explanation:
+Based on the provided context, the best answer is:
+
+5 (High) An assessment of natural hazards and climate impacts has been conducted in the last three years, and includes neighborhood-level data and analysis.
+
+This answer is supported by the statement that "In the City’s Climate Vulnerability Assessment, completed in 2017, the relationship between hazards and risks from the changing climate, such as the impact of extreme heat on key sectors of employment in the area, including outdoor jobs in tourism, hospitality, landscaping, and public safety, as well as demographics, such as children, the ill, and the elderly, is investigated." This indicates that a recent assessment has been conducted that includes analysis at the neighborhood level.
+
+-----
+Question ID: 2g
+Question: Does the city utilize citizen-generated data (citizen surveys, stakeholder meetings, polls, participatory technology, etc.) to inform ECR needs, policies, and programs?
+Answer with explanation:
+5 (High) The city offers and utilizes multiple platforms for citizen-generated data, with a formal process for incorporating data in ECR initiatives with mechanisms in place to share the results and outcomes of the data.
+
+Explanation: The context mentions the development of a Digital Community Engagement Application that would provide several benefits, including allowing residents to engage with specific project meetings and build consensus with each other and city staff. It also mentions the use of interactive feedback and live meetings to gather input from diverse user-groups in the city. These initiatives indicate that the city actively seeks and utilizes citizen-generated data to inform ECR needs, policies, and programs. Additionally, the context mentions the sharing of information and documents through online tools, social media messaging, and strategic distribution of notification flyers to stakeholders, further indicating the city's commitment to incorporating citizen input.
+
+-----
+Question ID: 2h
+Question: Does the city utilize citizen-generated data (citizen surveys, stakeholder meetings, polls, participatory technology, etc.) to inform ECR needs, policies, and programs?
+Answer with explanation:
+Based on the provided context, the best answer would be 3 (Medium) - The city has limited citizen-generated data to inform ECR initiatives. Data is shared back with the community in a limited fashion.
+
+The context mentions that the city is in the process of developing tools for public access/search of GIS utility and code enforcement data, which indicates some level of citizen-generated data collection. However, it also states that there are limitations in reporting, redaction, and identification of duplicate requests, suggesting that the city's use of citizen-generated data is not fully optimized. Additionally, there is no mention of a formal process for incorporating data in ECR initiatives or mechanisms to share the results and outcomes of the data with the community. Therefore, the city's utilization of citizen-generated data appears to be limited.
+
+-----
+Question ID: 3a
+Question: Have opportunities been identified to utilize existing funds to incorporate ECR
+Answer with explanation:
+Based on the provided context, the best answer would be 3 (Medium) - Funding opportunities for ECR have been explored but under-utilized.
+
+The context mentions that limited funds and competing needs from various departments have made funding sources more competitive. It also states that the City has established a Real Estate Acquisition fund and moved real estate projects to this fund, indicating that some efforts have been made to organize and allocate funds. However, it does not explicitly mention that funding opportunities for ECR have been fully utilized or leveraged to enable programs. Therefore, the answer is 3 (Medium).
+
+-----
+Question ID: 3b
+Question: Have public investments been used to leverage private participation in financing strategies?
+Answer with explanation:
+5 (High) Funding opportunities for ECR have been identified and leveraged to enable programs.
+
+Explanation: The context mentions that the Downtown and County CRAs can provide management, public process, and funding for catalyst sites and projects. It also states that public-private partnerships should be pursued and that properties under public ownership can be opportunities to leverage private investment. Additionally, there are references to leveraging relationships with the private sector and exploring various funding opportunities. These statements indicate that public investments have been used to leverage private participation in financing strategies.
+
+-----
+Question ID: 3c
+Question: To what extent would the public support increased fees/taxes to address ECR issues?
+Answer with explanation:
+3 (Medium) A portion of the public would support increased fees/taxes to address ECR.
+
+Explanation: The context mentions that the cost of governmental services should be supported with general tax dollars to the extent the benefit and enjoyment is. This implies that the public may be willing to support increased fees/taxes to address ECR issues, as long as they see a direct benefit and value in the services provided. Additionally, the context also mentions that user fees will be reviewed and updated on an ongoing basis to ensure they keep pace with changes in cost of the related service, indicating that there is a recognition of the need for financial resources to address ECR issues. However, it does not specify whether the majority of the public would support increased fees/taxes, hence the answer is medium.
+
+-----
+Question ID: 3d
+Question: Does the city have any innovative financing mechanisms in place to support ECR programs (e.g., green bonds, cap-and-trade markets for stormwater retention)?
+Answer with explanation:
+3 (Medium) The city has explored and identified potential financing mechanisms to support ECR programs.
+
+Explanation: The context does not explicitly mention whether the city has implemented any specific financing mechanisms for ECR programs such as green bonds or cap-and-trade markets for stormwater retention. However, it does mention that the city has explored and identified potential financing mechanisms. This suggests that the city has considered innovative financing options but may not have implemented them yet. Therefore, the most appropriate answer is 3.
+
+-----
+Question ID: 3e
+Question: Have cost-benefit analyses been performed (and communicated) to illustrate the financial and economic benefits of mitigation/adaptation measures and reducing social inequities?
+Answer with explanation:
+I would choose answer 3 (Medium) - Cost-benefit analyses have been performed, but have not been widely communicated to citizens and stakeholders.
+
+The context does not explicitly mention whether cost-benefit analyses have been performed or communicated. However, it does mention that the Resilience Plan in Orlando includes considerations for economic and equity issues, and that stakeholder engagement meetings have discussed equity and resilience. This suggests that cost-benefit analyses may have been performed to assess the financial and economic benefits of mitigation/adaptation measures and reducing social inequities. However, the context does not provide information on whether these analyses have been widely communicated to citizens and stakeholders.
+
+-----
+Question ID: 3f
+Question: Have social equity and climate resilience priorities and activities been funded
+Answer with explanation:
+Answer: 3 (Medium) Social equity and climate resilience priorities and activities have been funded within existing program budgets.
+
+Explanation: Based on the provided context, there are mentions of funding and investments in initiatives related to social equity and climate resilience. For example, there are allocations for police training, accountability, and oversight, as well as investments in career training and creation of a citywide program to address racial equity. Additionally, there are mentions of funding for affordable housing, energy efficiency upgrades, and improvements in parks and recreation. While there is no specific mention of dedicated funds in the annual budget, the context suggests that these priorities and activities have been funded within existing program budgets.
+
+-----
+Question ID: 3g
+Question: Does the city utilize participatory budgeting practices to inform budgetary allocations and program priorities?
+Answer with explanation:
+3 (Medium) The city provides limited options (e.g. public hearings, finance committee participation) for citizen input into the budgetary process.
+
+Explanation: Based on the provided context, the city does involve the public in the budgetary process through public hearings and advisory boards. However, there is no mention of a comprehensive participatory budgeting process that includes tools for citizen input, proposal development opportunities, and a democratic decision-making process. Therefore, the city's level of citizen participation in the budgetary process can be considered limited.
+
+-----
+Question ID: 4a
+Question: Is there an advisory board/task force/working group to facilitate the periodic analysis of climate hazards and impacts on vulnerable populations?
+Answer with explanation:
+The best answer is 5 (High) There is a working group/advisory board/task force that consists of internal and external stakeholders to inform the city’s efforts on climate and equity.
+
+Explanation: The context mentions that the City of Orlando is working with partners in academia, public and private sectors to conduct asset-specific assessments of hazards and consequences, including extreme heat, sea level rise and hurricanes, and inland flooding. It also mentions that there is a stakeholder engagement process in place to prioritize concerns, direct risk analyses, and identify vulnerabilities. This indicates that there is a working group or advisory board that includes internal and external stakeholders to inform the city's efforts on climate and equity.
+
+-----
+Question ID: 4b
+Question: Does your city have a social equity office and/or staff dedicated to equity issues?
+Answer with explanation:
+5 (High) The city has an office and staff entirely dedicated to addressing social equity.
+
+Explanation: Based on the provided context, it is mentioned that the Office of Equity was created to build the City of Orlando into a model of equity, diversity, and inclusion. The office provides vision, leadership, and counsel on matters of equity, diversity, and inclusion, and partners with departments and communities to create inclusive environments. It also conducts internal reviews of city policies and programs to curb systemic inequities and advocates for equality of opportunity. Additionally, the city hired its first Chief Equity Official to support the city's journey towards centering equity, diversity, and inclusion in all efforts. This indicates that the city has a dedicated office and staff focused on social equity.
+
+-----
+Question ID: 4c
+Question: Does your city have a climate resilience office and/or staff dedicated to climate resilience?
+Answer with explanation:
+Answer: 5 (High) The city has an office and staff entirely dedicated to addressing climate resilience.
+
+Explanation: The context mentions that the Office of Sustainability & Resilience leads the coordination, development, integration, and management of municipal resilience efforts. It also states that the Office of Sustainability & Resilience merged with the Office of Future Ready to expand the city's resiliency and ensure preparedness for various disturbances, including climate change impacts. Additionally, the Climate Advisor to the City of Orlando was hired to assist in delivering on Orlando's ambitious climate strategy. These pieces of context indicate that the city has a dedicated office and staff focused on climate resilience.
+
+-----
+Question ID: 4d
+Question: Has racial/social equity training been provided to city staff and elected officials?
+Answer with explanation:
+Based on the provided context, the best answer would be:
+
+3 (Medium) The city has provided or facilitated limited training to select city departments and staff.
+
+Explanation: The context mentions that in 2019, select city staff participated in the Urban Sustainability Directors Network's "Foundations for Equity" training program. It also states that in January 2021, the city hired its first equity official who will continue to work internally and externally on actions that will help end systemic racism and create an Orlando where every resident is equally valued, equally protected, and has equitable access to opportunities and services. While this indicates that some staff members have received equity training, it does not explicitly state that all city staff and elected officials have received training. Therefore, the answer is medium, indicating limited training to select city departments and staff.
+
+-----
+Question ID: 4e
+Question: Are new programs/projects formally required to consider equity?
+Answer with explanation:
+3 (Medium) Select programs/projects must meet established equity criteria to be approved. Programs are reviewed periodically to promote accountability and ensure compliance.
+
+Explanation: The context does not explicitly state that all new programs/projects must meet equity criteria. However, it does mention that programs are reviewed periodically to promote accountability and ensure compliance, suggesting that there are established equity criteria that select programs/projects must meet. This indicates a medium level of adherence to equity requirements.
+
+-----
+Question ID: 4f
+Question: To what extent are interdepartmental and cross-sector analyses performed related to equity and climate hazards (e.g., housing & vulnerability, health & vulnerability, etc.)?
+Answer with explanation:
+5 (High) Interdepartmental analyses and coordination are embedded into city policy and practice.
+
+Explanation: The provided context mentions that the City of Orlando has been conducting a Climate Vulnerability Assessment and is in the process of developing a Resilience Plan. The plan aims to address chronic stressors and acute shocks, including hazards related to equity and climate, such as housing vulnerability and health vulnerability. The context also mentions that there is a review of these hazards and consequences with various departments, stakeholders, and subject matter experts to prioritize concerns and identify vulnerabilities. This indicates that interdepartmental analyses and coordination are being actively pursued and integrated into city policy and practice, suggesting a high level of adherence to performing such analyses.
+
+-----
+Question ID: 4g
+Question: Have root-cause analyses been performed to identify and address the primary drivers of social inequity and climate risk in the community? Equity-related criteria for policy/program/project consideration was not located during research
+Answer with explanation:
+2 (Medium) Root-cause analyses have been performed for social inequities or climate risk, but not both. Policies and programs for corrective action are in early stages of development or implementation.
+
+Explanation: Based on the provided context, there is no specific mention of root-cause analyses being performed to identify and address the primary drivers of social inequity and climate risk in the community. Therefore, it can be inferred that some level of analysis has been conducted, but it may not cover both social inequities and climate risk. Additionally, the mention of policies and programs being in early stages of development or implementation suggests that corrective actions are being considered but are not yet fully developed or implemented.
+
+-----
+Question ID: 4h
+Question: Do climate and equity plans account for potential unintended consequences?
+Answer with explanation:
+3 (Medium) The planning process requires forecasting and/or analysis of potential unintended consequences
+
+Explanation: The context mentions that the planning process includes a review of suggestions in terms of their ability to address economic, equity, and other locally relevant considerations. This indicates that the planning process takes into account potential unintended consequences and considers the broader impacts of climate and equity plans.
+
+-----
+Question ID: 4i
+Question: Does the city have (and use) access to specialized skills (engineering, environmental science, equity/social services), either internally or through partnerships, to inform project planning and implementation?
+Answer with explanation:
+I would choose answer 3 (Medium) - The city utilizes a combination of in-house and external SMEs but with minimal knowledge of equitable approaches to project planning and implementation.
+
+This answer is based on the context that mentions the need for the city to prioritize what can be done and upgrade outdated software and servers. It also mentions the desire to take service offerings to a greater level and be more responsive. These statements suggest that the city may have some internal expertise, but it may not be fully equipped with knowledge of equitable approaches to project planning and implementation. Therefore, they may rely on external subject matter experts to fill in the gaps.
+
+-----
+Question ID: 5a
+Question: To what extent are ECR-related priorities/projects coordinated with regional jurisdictions (e.g., city, county, state, districts, etc.)?
+Answer with explanation:
+5 (High) The city has an established network and forum to coordinate with regional jurisdictions.
+
+Explanation: The provided context mentions that the City of Orlando currently coordinates with a multitude of entities, including regional, state, and federal governments, quasi-governmental groups, and organizations composed of elected and appointed officials, all Orange County municipalities, and the governments of Orange. It also mentions the East Central Florida Regional Planning Council (ECFRPC), which is an association of local governments working in partnership with the State of Florida to plan for the region's long-term future. This indicates that the city has an established network and forum for coordinating with regional jurisdictions.
+
+-----
+Question ID: 5b
+Question: Is there an established network of trusted agents to assist the city with reaching historically marginalized and/or vulnerable populations?
+Answer with explanation:
+5 (High) The city has identified and utilized trusted agents to assist with all community engagement activities
+
+Explanation: The context mentions the need to reach out to underserved populations and engage with community leaders and influencers, including civic groups, religious organizations, social service agencies, and local business leaders. It also mentions the establishment of partnerships with organizations that work with underserved clients, such as churches, social service organizations, civil rights groups, and health groups. This indicates that the city has identified and utilized trusted agents to assist with community engagement activities, specifically targeting historically marginalized and/or vulnerable populations.
+
+-----
+Question ID: 5c
+Question: Are there programs/incentives to encourage and facilitate participation of vulnerable populations in the planning process?
+Answer with explanation:
+5 (High) The city has implemented several programs/incentives to facilitate increased participation of vulnerable populations in the planning process, such as neighborhood-based meetings, and provision of food/beverage, child- care, and/or monetary compensation for participation.
+
+Explanation: The context mentions several actions and strategies aimed at increasing the participation of vulnerable populations in the planning process. These include holding meetings in neighborhood venues, providing food/beverage, child-care, and/or monetary compensation for participation. These efforts indicate that the city has implemented programs/incentives to encourage and facilitate the participation of vulnerable populations in the planning process, making answer 5 the most appropriate choice.
+
+-----
+Question ID: 5d
+Question: Have potential barriers to the participation of vulnerable populations in the planning and implementation process been identified?
+Answer with explanation:
+5 (High) Barriers have been identified and the city has taken corrective action to reduce these barriers
+
+Explanation: Based on the provided context, there are multiple instances where potential barriers to the participation of vulnerable populations have been identified and actions have been taken to address them. For example, in the Public Safety and Health Focus Area Roundtable Meeting Summary, attendees identified short-term solution strategies to serve vulnerable populations and create age-friendly plans. Additionally, the report mentions the need to ensure the full and fair participation of low-income and minority communities, limited English proficiency and foreign-born populations, and increase opportunities for intergenerational feedback. These actions indicate that the city has taken corrective action to reduce barriers and promote the participation of vulnerable populations.
+
+-----
+Question ID: 5e
+Question: Has the city partnered with civic groups and organizations that promote social equity and/or climate resilience?
+Answer with explanation:
+Answer: 5 (High) The city has a rich and diverse network of non-profit and community-based partners that are involved in the conceptualization, planning, and implementation of ECR-related programs/policies/projects.
+
+Explanation: The context mentions that the city partners with local, regional, national, and global organizations and engages in diverse networks. It is a member of various organizations and initiatives focused on clean energy, recycling, resilience, and climate action. The city also has numerous partner programs with local and regional nonprofits, and it has launched initiatives in partnership with other organizations. This indicates that the city has a strong network of partners involved in promoting social equity and climate resilience.
+
+-----
+Question ID: 5f
+Question: Are community engagement activities tracked to determine performance and desired outcomes?
+Answer with explanation:
+Based on the provided context, the best answer would be 3 (Medium) The city has established metrics to measure success of engagement activities but has not utilized the data to inform future activities. 
+
+The context mentions the development of a public participation tracking system, which indicates that the city has established metrics to measure the success of engagement activities. However, there is no mention of the city utilizing the data to inform future activities.
+
+-----

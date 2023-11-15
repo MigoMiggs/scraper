@@ -1,4 +1,3 @@
-
 from dotenv import load_dotenv, find_dotenv
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
@@ -9,16 +8,13 @@ from langchain.prompts.chat import (
 )
 from langchain.retrievers.multi_query import MultiQueryRetriever
 from langchain.chains import (RetrievalQA,
-    RetrievalQAWithSourcesChain
-)
+                              RetrievalQAWithSourcesChain
+                              )
 from utilities.utils import parse_assessment_file, get_gpt_model
 from scraper.settings import Config
+from langchain.docstore.document import Document
 
 _ = load_dotenv(find_dotenv())
-
-
-
-
 embeddings = OpenAIEmbeddings()
 
 config = Config('config_coo.yaml')
@@ -31,14 +27,12 @@ vectordb = Chroma(persist_directory=persist_directory, embedding_function=embedd
 
 print(f"Total chunks: {vectordb._collection.count()}")
 
-
 retriever = MultiQueryRetriever.from_llm(
-    retriever=vectordb.as_retriever(search_kwargs={"k":7}), llm=llm
+    retriever=vectordb.as_retriever(search_kwargs={"k": 7}), llm=llm
 )
 
-
 # Make sure that our retriever gets back 7 results
-#retriever = vectordb.as_retriever(search_type="similarity", search_kwargs={"k":7})
+# retriever = vectordb.as_retriever(search_type="similarity", search_kwargs={"k":7})
 
 #### System Prompt Construction
 
@@ -60,11 +54,11 @@ Context:
 {context}
 """
 system_message_prompt = SystemMessagePromptTemplate.from_template(system_template)
-human_template=""" {question} """
+human_template = """ {question} """
 human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
 
 chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
-ChatPromptTemplate.input_variables=["question"]
+ChatPromptTemplate.input_variables = ["question"]
 
 qa_chain = RetrievalQA.from_chain_type(
     llm,
@@ -75,12 +69,12 @@ qa_chain = RetrievalQA.from_chain_type(
     return_source_documents=True
 )
 
-
 # Assuming the content is stored in 'questions.txt'
 parsed_data = parse_assessment_file('./test-data/assessment_questions.txt')
 
 # Open or create file to write results to
-with open('./test-data/assessment_questions_results.txt', 'w') as file:
+with open('./test-data/assessment_questions_results.txt', 'w') as file, open('./test-data/results_context.txt',
+                                                                             'w') as context_file:
     # empty file first
     file.write("")
 
@@ -105,5 +99,16 @@ with open('./test-data/assessment_questions_results.txt', 'w') as file:
 
         file.write("\n-----\n")
 
+        # Write the question id, plus the context
+        docs = result.get("source_documents", [])
+        i=0
+        d: Document
+        for d in docs:
+            context_file.write(f"Question ID: {entry['question_id']}\n\n")
+            i += 1
+            context_file.write(f"Document {i}:\n")
+            context_file.write(f"{d.page_content}")
+            context_file.write(f"\nSource: {d.metadata['source']}\n\n")
 
+        context_file.write(f"-------------------------------\n\n")
         print("\n-----\n")

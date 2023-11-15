@@ -12,6 +12,7 @@ officials
 -----
 Question:
 1b. Are there programs in place to support education and knowledge transfer of ECR issues?
+
 Answers:
 1 (Low) Educational and outreach programs around equitable climate resilience do not exist
 2
@@ -22,3 +23,378 @@ Answers:
 -----
 Question:
 1c. To what extent are city staff and elected officials aware of the social inequities in their city?
+
+Answers:
+1 (Low) The city has not set out to establish a vision for equitable climate resilience in the community 
+2
+3 (Medium) The city has conducted engagement activities with community leaders and vulnerable populations to facilitate a common ECR vision
+4
+5 (High) The city has facilitated engagement activities with a wide range of stakeholders and vulnerable populations, resulting in an articulated and adopted common vision of ECR
+Education to residents on issues adjacent to resiliency (energy, water, mobility, etc.) were identified as challenges within the Future-Ready plan. "Potential Strategies" are identified, but the extent of implementation and success in knowledge transfer is unknown.
+6 Don't know
+-----
+Question:
+1d. Does the city have stated ECR goals?
+
+Answers:
+1 (Low) The city has not set out to establish goals for ECR in the community
+2
+3 (Medium) The city has conducted engagement activities with community leaders to facilitate ECR goal setting 
+4
+5 (High) The city has articulated a set of tangible ECR goals
+6 Don't know
+-----
+Question:
+2a. Is data on social vulnerabilities available and used to inform decision- making?
+
+Answers:
+1 (Low) Data sources are unknown or not available, and are not used in decision making 
+2
+3 (Medium) Data is available, it informs decision making, and is provided on the city’s website in an easily digestible manner
+4
+5 (High) Multiple data sources are available, are incorporated into the decision-making process, and are provided on
+the city website as an interactive map/portal 
+6 Don't know
+-----
+Question:
+2b. Is data on climate hazards and risks available and used to inform decision-making?
+
+Answers:
+1 (Low) Data sources are unknown or not available, and are not used in decision making 
+2
+3 (Medium) Data is available, it informs decision making of policies and projects, and is provided on the city’s website in an easily digestible manner
+4
+Orlando's 2017 Climate Vulnerability Assessment and the 2016 Orange County Local Mitigation Strategy are thorough in their analysis of potential hazards and their impact on the community, providing a wealth of data. Unknown factors affecting score include the extent to which this data is incorporated into policy- and decision-making, and the extent it is communicated to internal and external stakeholders.
+5 (High) Multiple data sources are available, are a determinant of policies and projects, and are provided on the city website as an interactive map/portal
+6 Don't know
+-----
+Question:
+2c. Have social vulnerability assessments been conducted to identify potential climate impacts on vulnerable populations?
+
+Answers:
+1 (Low) No social vulnerability assessments or studies have been performed
+2
+3 (Medium) A vulnerability assessment has been performed, at the city-scale, within the past 10 years
+4
+5 (High) A vulnerability assessment has been performed, at the neighborhood scale, within the past 5 years 
+6 Don't know
+-----
+Question:
+2d. To what extent are maps and visualization tools available and used?
+
+Answers:
+1 (Low) Maps and visualization tools are not used to communicate climate hazards or social vulnerabilities 
+2
+3 (Medium) Maps and visualization tools are used to communicate climate hazards or social vulnerabilities, but not both
+4
+5 (High) Maps and visualization tools are used to communicate the overlap of climate hazards and social
+vulnerabilities 
+6 Don't know
+-----
+Question:
+2e. Has an equity audit been conducted of city programs, policies, and projects?
+
+Answers:
+1 (Low) The city has not considered the impact of existing programs/policies/and projects on social equity 
+2
+3 (Medium) The city has undertaken preliminary analysis and audit of programs/policies/and projects to determine potential impact on social equity in climate resilience efforts
+4
+5 (High) The city has completed an analysis and audit of programs/ policies/and projects, and has taken corrective
+action to ensure positive impacts on social equity in climate resilience efforts 
+6 Don't know
+-----
+Question:
+2f. Has a natural hazards and climate impact assessment been conducted to
+identify natural hazards and potential impacts on the community at the neighborhood level?
+
+Answers:
+1 (Low) An assessment of natural hazards and climate impacts has not been conducted in the last 10 years 
+2
+3 (Medium) An assessment of natural hazards and climate impacts has been conducted in the last five years, but does not include neighborhood-level data or analysis
+4
+5 (High) An assessment of natural hazards and climate impacts has been conducted in the last three years, and
+includes neighborhood-level data and analysis 
+6 Don't know
+-----
+Question:
+2g. Does the city utilize citizen-generated data (citizen surveys, stakeholder meetings, polls, participatory technology, etc.) to inform ECR needs, policies, and programs?
+
+Answers:
+1 (Low) The city does has not undertaken initiatives to facilitate citizen-generated data 
+2
+3 (Medium) The city offers and utilizes limited citizen-generated data which is used to inform ECR initiatives. Data is shared back with the community in a limited fashion.
+4
+5 (High) The city offers and utilizes multiple platforms for citizen-generated data, with a formal process for
+incorporating data in ECR initiatives with mechanisms in place to share the results and outcomes of the data 
+6 Don't know
+-----
+Question:
+2h. Does the city utilize citizen-generated data (citizen surveys, stakeholder meetings, polls, participatory technology, etc.) to inform ECR needs, policies, and programs?
+
+Answers:
+1 (Low) The city has not undertaken initiatives to facilitate citizen-generated data 
+2
+3 (Medium) The city has limited citizen-generated data to inform ECR initiatives. Data is shared back with the community in a limited fashion.
+4
+5 (High) The city offers and uses multiple platforms for citizen-generated data, with a formal process for
+incorporating data in ECR initiatives with mechanisms in place to share the results and outcomes of the data 
+6 Don't know
+-----
+Question:
+3a. Have opportunities been identified to utilize existing funds to incorporate ECR
+
+Answers:
+1 (Low) Funding opportunities for ECR have not been explored
+2
+3 (Medium) Funding opportunities for ECR have been explored but under-utilized
+4
+5 (High) Funding opportunities for ECR have been identified and leveraged to enable programs 
+6 Don't know
+-----
+Question:
+3b. Have public investments been used to leverage private participation in financing strategies?
+
+Answers:
+1 (Low) Funding opportunities for ECR have not been explored
+2
+3 (Medium) Funding opportunities for ECR have been explored but are under-utilized
+4
+5 (High) Funding opportunities for ECR have been identified and leveraged to enable programs 
+6 Don't know
+-----
+Question:
+3c. To what extent would the public support increased fees/taxes to address ECR issues?
+
+Answers:
+1 (Low) The public would not support increased fees/taxes to address ECR
+2
+3 (Medium) A portion of the public would support increased fees/taxes to address ECR 
+4
+5 (High) The majority of the public would support increased fees/taxes to address ECR 
+6 Don't know
+-----
+Question:
+3d. Does the city have any innovative financing mechanisms in place to support ECR programs (e.g., green bonds, cap-and-trade markets for stormwater retention)?
+
+Answers:
+1 (Low) The city has not considered any financing mechanisms to support ECR programs
+2
+3 (Medium) The city has explored and identified potential financing mechanisms to support ECR programs 
+4
+5 (High) The city has developed and utilized financing mechanisms to support ECR programs
+6 Don't know
+-----
+Question:
+3e. Have cost-benefit analyses been performed (and communicated) to illustrate the financial and economic benefits of mitigation/adaptation measures and reducing social inequities?
+
+Answers:
+1 (Low) Cost-benefit analyses have not been performed or communicated 
+2
+3 (Medium) Cost-benefit analyses have been performed, but have not been widely communicated to citizens and stakeholders
+4
+5 (High) Cost-benefit analyses have been performed and widely communicated to citizens and stakeholders 
+6 Don't know
+-----
+Question:
+3f. Have social equity and climate resilience priorities and activities been funded
+in annual budgets?
+
+Answers:
+1 (Low) Social equity and climate resilience priorities and activities have not been funded in annual budgets 
+2
+3 (Medium) Social equity and climate resilience priorities and activities have been funded within existing program budgets
+4
+5 (High) Social equity and climate resilience priorities and activities have dedicated funds allocated in the annual
+budget 
+6 Don't know
+-----
+Question:
+3g. Does the city utilize participatory budgeting practices to inform budgetary allocations and program priorities?
+
+Answers:
+1 (Low) The city does not utilize participatory budgeting practices 
+2
+3 (Medium) The city provides limited options (e.g. public hearings, finance committee participation) for citizen input into the budgetary process
+4
+5 (High) The city has established a participatory budgeting process that includes resident-advisory boards, tools to
+receive citizen input, proposal development opportunities, and a democratic decision-making process 
+6 Don't know
+-----
+Question:
+4a. Is there an advisory board/task force/working group to facilitate the periodic analysis of climate hazards and impacts on vulnerable populations?
+
+Answers:
+1 (Low) There is no advisory board/task force/working group to inform the city’s efforts on climate and equity 
+2
+3 (Medium) There is an internal working group/advisory board/task force to inform the city’s efforts on climate and equity
+4
+5 (High) There is a working group/advisory board/task force the consists of internal and external stakeholders to
+inform the city’s efforts on climate and equity 
+6 Don't know
+-----
+Question:
+4b. Does your city have a social equity office and/or staff dedicated to equity issues?
+
+Answers:
+1 (Low) The city does not have any office or staff working on social equity
+2
+3 (Medium) The city has an office and/or staff that includes equity as a part of their scope of work 
+4
+5 (High) The city has an office and staff entirely dedicated to addressing social equity
+6 Don't know
+-----
+Question:
+4c. Does your city have a climate resilience office and/or staff dedicated to climate resilience?
+
+Answers:
+1 (Low) The city does not have any office or staff working on climate resilience
+2
+3 (Medium) The city has an office and/or staff with climate resilience as a part of their scope of work
+4
+5 (High) The city has an office and staff entirely dedicated to addressing climate resilience
+6 Don't know
+-----
+Question:
+4d. Has racial/social equity training been provided to city staff and elected officials?
+City does not have any equity office, though as noted before, does have a Community Trust and Equity Initiative. The extent to which this and other equity-related efforts are funded and staffed is unknown.
+ls?
+
+Answers:
+1 (Low) The city has not provided or facilitated any racial/social equity training to city staff and elected officials 
+2
+3 (Medium) The city has provided or facilitated limited training to select city departments and staff.
+4
+5 (High) The city has provided or facilitated education and training to all city staff and elected officials 
+6 Don't know
+-----
+Question:
+4e. Are new programs/projects formally required to consider equity?
+
+Answers:
+1 (Low) There is no requirement for new programs/projects to meet certain equity criteria 
+2
+3 (Medium) Select programs/projects must meet established equity criteria to be approved. Programs are reviewed periodically to promote accountability and ensure compliance.
+4
+5 (High) All new programs/projects must meet established equity criteria to be approved. Programs are reviewed
+regularly to promote accountability and ensure compliance. 
+6 Don't know
+-----
+Question:
+4f. To what extent are interdepartmental and cross-sector analyses performed related to equity and climate hazards (e.g., housing & vulnerability, health & vulnerability, etc.)?
+
+Answers:
+1 (Low) Interdepartmental analyses and coordination does not occur
+2
+3 (Medium) Interdepartmental analyses and coordination occurs informally and ad-hoc
+4
+5 (High) Interdepartmental analyses and coordination are embedded into city policy and practice 
+6 Don't know
+-----
+Question:
+4g. Have root-cause analyses been performed to identify and address the primary drivers of social inequity and climate risk in the community? Equity-related criteria for policy/program/project consideration was not located during research
+2020 Sustainability Office's balanced scorecard indicated 75% of city offices are involved in sustainability/resilience initiatives. Factors affecting scoring may include the depth/substance of involvement and coordination
+
+Answers:
+1 (Low) Root-cause analyses have not been performed to identify and address the primary drivers of social inequity and climate risk in the community
+2
+3 (Medium) Root-cause analyses have been performed for social inequities or climate risk, but not both. Policies and
+programs for corrective action are in early stages of development of implementation. 
+4
+5 (High) Root-causes analyses have been performed to identify and address drivers of both social inequity and climate risk. Policies and programs for corrective action are well-development and in the field.
+6 Don't know
+-----
+Question:
+4h. Do climate and equity plans account for potential unintended consequences?
+
+Answers:
+1 (Low) Climate and equity plans do not consider potential unintended consequences
+2
+3 (Medium) The planning process requires forecasting and/or analysis of potential unintended consequences 
+4
+5 (High) Programs designed to address the root causes of climate variability have been developed and funded 
+6 Don't know
+-----
+Question:
+4i. Does the city have (and use) access to specialized skills (engineering, environmental science, equity/social services), either internally or through partnerships, to inform project planning and implementation?
+
+Answers:
+1 (Low) The city has in-house subject matter experts but they’re not informed on equitable approaches to project planning and implementation
+2
+3 (Medium) The city utilizes a combination of in-house and external SMEs but with minimal knowledge of equitable
+approaches to project planning and implementation 
+4
+5 (High) The city has a network of in-house and external SMEs the ensure equitable approaches are integrated in project planning and implementation
+6 Don't know
+-----
+Question:
+5a. To what extent are ECR-related priorities/projects coordinated with regional jurisdictions (e.g., city, county, state, districts, etc.)?
+
+Answers:
+1 (Low) The city does not coordinate with regional jurisdictions
+2
+3 (Medium) The city informally coordinates with select regional jurisdictions
+4
+5 (High) The city has an established network and forum to coordinate with regional jurisdictions 
+6 Don't know
+-----
+Question:
+5b. Is there an established network of trusted agents to assist the city with reaching historically marginalized and/or vulnerable populations?
+
+Answers:
+1 (Low) The city has not identified or utilized potential trusted agents to assist with community engagement activities 
+2
+3 (Medium) The city has identified and engaged with limited trusted agents to assist with community engagement activities
+LMS and Emergency Management Plans are developed at the county-level. Intergovernmental coordination beyond this is unknown.
+4
+5 (High) The city has identified and utilized trusted agents to assist with all community engagement activities 
+6 Don't know
+-----
+Question:
+5c. Are there programs/incentives to encourage and facilitate participation of vulnerable populations in the planning process?
+
+Answers:
+1 (Low) The city has not considered opportunities to facilitate increased participation of vulnerable populations in the planning process
+2
+3 (Medium) The city has implemented some programs/incentives to facilitate increased participation of vulnerable
+populations in the planning process, such as holding meetings in neighborhood venues 
+4
+5 (High) The city has implemented several programs/incentives to facilitate increased participation of vulnerable populations in the planning process, such as neighborhood-based meetings, and provision of food/beverage, child- care, and/or monetary compensation for participation
+6 Don't know
+-----
+Question:
+5d. Have potential barriers to the participation of vulnerable populations in the planning and implementation process been identified?
+
+Answers:
+1 (Low) Potential barriers have not been studied or identified
+2
+3 (Medium) Potential barriers have been identified, and plans to reduce barriers to participation are underway 4
+5 (High) Barriers have been identified and the city has taken corrective action to reduce these barriers
+6 Don't know
+-----
+Question:
+5e. Has the city partnered with civic groups and organizations that promote social equity and/or climate resilience?
+
+Answers:
+1 (Low) The city has not partnered with any equity or resilience civic groups 
+2
+3 (Medium) The city has a limited number of racial/equity partners that are occasionally engaged for ECR-related activities
+4
+5 (High) The city has a rich and diverse network of non-profit and community-based partners that are involved in the
+conceptualization, planning, and implementation of ECR-related programs/policies/projects 
+6 Don't know
+-----
+Question:
+5f. Are community engagement activities tracked to determine performance and desired outcomes?
+
+Answers:
+1 (Low) The city has not established any metrics to measure success of engagement activities 
+2
+3 (Medium) The city has established metrics to measure success of engagement activities but has not utilized the data to inform future activities
+4
+5 (High) The city has established metrics to measure success of engagement activities, has made the data available
+to the public, and has utilized the data to inform future activities 
+6 Don't know
+
+
+
+

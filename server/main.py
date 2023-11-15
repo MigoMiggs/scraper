@@ -8,7 +8,6 @@ import yaml
 from scraper.server.kb.KB import KB
 from dotenv import load_dotenv, find_dotenv
 from langchain.chains import RetrievalQA
-from langchain.chat_models import ChatOpenAI
 from fastapi.middleware.cors import CORSMiddleware
 from scraper.utilities.utils import get_gpt_model, get_retriever_from_type, get_prompt_for_multianswer
 

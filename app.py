@@ -1,17 +1,24 @@
 from scraper.scraper import Scraper
-from utilities.utils import filename_to_url
+import os
+import sys
 
 """
 MAIN
 This is the entry point for the scraper
+
+Usage: app.py <config_file>
 """
 if __name__ == '__main__':
-    scraper = Scraper('./config_cdc.yaml')
-    scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
 
-    #site = filename_to_url('https%3A%2F%2Fwww.orlando.gov%2FPublic-Safety%2FOFD%2FBecome-an-Orlando-Firefighter')
-    #scraper.scrape(site)
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
 
-    # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/v/3/departments/oca/22_oca_mmg-applicationguidelines-schoolsandnpo-june2022.pdf')
-    # scraper.scrape('https://www.orlando.gov/files/sharedassets/public/departments/edv/main-streets/sodo2.jpeg')
-    #scraper.scrape('https://www.fema.gov/press-release/20210318/fema-awards-florida-department-health-nearly-11-million-hurricane-irma')
+        # check if the tmp directory exists, if not create it
+        if not os.path.exists('./tmp'):
+            os.makedirs('./tmp')
+
+        scraper = Scraper(filename)
+        scraper.scrape_site(scraper.get_config().get_root_url_to_scrape())
+
+else:
+    print("No configuration xml provided. Please provide a filename as an argument.")

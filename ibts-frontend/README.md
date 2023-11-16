@@ -6,17 +6,22 @@ Run through the following setup steps:
 2. npm install axios
 3. npm install cors --save
 
+### Install react-router-dom
+npm install react-router-dom
+
 ## Things to consider
 
 Had to add the following in package.json for the app to run:
 
-"scripts": {
+`"scripts": {
     "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
     "build": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
-}
+}`
 
-## Install react-router-dom
-npm install react-router-dom
+### Start the app
+`npm start`
+
+The app will run on localhost:3000,  http://localhost:3000/
 
 
 ## Available Scripts

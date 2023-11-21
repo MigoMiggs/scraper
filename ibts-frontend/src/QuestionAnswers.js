@@ -5,19 +5,24 @@ const QuestionAnswers = () => {
   const [question, setQuestion] = useState('');
   const [answers, setAnswers] = useState('');
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false); // New loading state
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // New state for error handling
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null); // Reset error state on new submission
     try {
-        setLoading(true);
       const res = await axios.get('http://localhost:5000/question_answer', {
         params: { question, answers, kb: 'chroma_clean_ada', llm: 'gpt-3.5-turbo' }
       });
       setResponse(res.data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching data: ', error);
+    } catch (err) {
+      console.error('Error fetching data: ', err);
+      setError('Error fetching data'); // Set error message
+      setResponse(null); // Reset response on error
+    } finally {
+      setLoading(false); // Ensure loading is set to false in both success and error cases
     }
   };
 
@@ -34,7 +39,7 @@ const QuestionAnswers = () => {
           />
         </div>
         <div>
-          <label>Answers (comma-separated):</label>
+          <label>Answers:</label>
           <p></p>
           <textarea
             value={answers}
@@ -43,17 +48,13 @@ const QuestionAnswers = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
-      {loading ? (
-        <div className="loading-spinner"></div>
-      ) : (
-        response && (
-          // the div below should be fixed size 
-          // and should not change when the answer changes
-          <div className="answer-container">
-            <h2>Answer:</h2>
-            <p>{JSON.stringify(response)}</p>
-          </div>
-        )
+      {loading && <div className="loading-spinner"></div>}
+      {error && <div className="error-message">{error}</div>}
+      {response && (
+        <div className="answer-container">
+          <h2>Answer:</h2>
+          <p>{JSON.stringify(response)}</p>
+        </div>
       )}
     </div>
   );

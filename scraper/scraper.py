@@ -281,12 +281,17 @@ class Scraper:
         # If the file is .pdf, then fetch it and store it
         if file_extension == '.pdf':
             dir_filename = os.path.join(self.DIR_SCRAPED, filename)
-            self.fetch_pdf(url, dir_filename)
+
+            # check if dir_filename exists, fetch only if it does not
+            if not os.path.isfile(dir_filename):
+                self.fetch_pdf(url, dir_filename)
+                time.sleep(1)
 
             # Store the text and its embeddings in the vector database
             if usevecrtordb:
                 vectorstore.VectorDB().split_embed_store(dir_filename, '.pdf')
             return
+
 
         # Fetch the page
         try:

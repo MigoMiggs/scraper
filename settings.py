@@ -54,14 +54,10 @@ class Config:
             self.data = yaml.safe_load(file)
 
     def get_embeddings(self):
-
         return self.data['embeddings']
 
     def get_logging_config(self):
         return self.data['logging']
-
-    def get_open_ai_key(self):
-        return self.data['openai']['key']
 
     def get_root_url_to_scrape(self):
         return self.data['site']['url']

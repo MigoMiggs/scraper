@@ -46,10 +46,6 @@ class VectorDB:
 
             self.logger.debug("Load embeddings")
 
-            # set the api key for open ai
-            openai.api_key = self.config.get_open_ai_key()
-            self.logger.debug("Open API key set")
-
            # load the embeddings model based on the config file setting
             if self.config.get_embeddings()["type"] == 'HUGGING_FACE':
 

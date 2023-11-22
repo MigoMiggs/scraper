@@ -1,5 +1,4 @@
 import time
-
 import settings
 from settings import Config
 import langchain.embeddings
@@ -173,6 +172,11 @@ class Scraper:
         self.fileParsed.close()
 
     def fetch_sitemaps(self, domain) -> list:
+        """
+        Fetches the sitemap.xml files from the given domain
+        :param domain:
+        :return:
+        """
 
         robots_url = f"{domain}/robots.txt"
         sitemap_urls = []
@@ -220,6 +224,11 @@ class Scraper:
 
 
     def should_skip_file(self, file_extension: str) -> bool:
+        """
+        Checks if the file extension is in the list of non-text file extensions
+        :param file_extension:
+        :return:
+        """
 
         self._logger.debug(f'File extension: {file_extension}')
         file_extension = file_extension.lower()
@@ -248,6 +257,7 @@ class Scraper:
         :param visited: this allows us to recursively crawl
         :return:
         """
+
         if visited is None:
             visited = set()  # Set to keep track of visited URLs
 
@@ -345,7 +355,6 @@ class Scraper:
 
             # Skip already visited links, and limit to same domain
             if link not in visited and link_domain == original_domain:
-
                 self.scrape(link, visited, referer=url)  # Recursively scrape each link
 
 

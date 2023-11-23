@@ -22,7 +22,7 @@ class Config:
     filepath = ''
     _logger = None
 
-    def __new__(cls, file_path='./config.yaml'):
+    def __new__(cls, file_path='./config/config.yaml'):
         """
         Ensures a single instance of Config is created
         :param file_path:
@@ -33,14 +33,14 @@ class Config:
             cls._instance.file_path = file_path
         return cls._instance
 
-    def __init__(self, file_path='./config.yaml'):
+    def __init__(self, file_path='./config/config.yaml'):
         """Loads configuration data from file if not loaded already."""
         if not hasattr(self, 'initialized'):
             self._load_config(file_path)
             self.initialized = True
 
             # Set the logger
-            with open('logging.yaml', 'r') as file:
+            with open('./config/logging.yaml', 'r') as file:
                 log_config = yaml.safe_load(file.read())
                 logging.config.dictConfig(log_config)
 

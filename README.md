@@ -27,6 +27,8 @@ site:
 vectordb:
   chroma-path: "./chroma"
 ```
+Note: You can find existing configuration files under ./config. 
+
 3. Make sure logging levels are adequate within logging.yaml
 
 4. Make sure you run this in the python console

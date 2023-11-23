@@ -14,10 +14,18 @@ from utilities.utils import parse_assessment_file, get_gpt_model
 from scraper.settings import Config
 from langchain.docstore.document import Document
 
+'''
+This script is used to test the questions from the assessment_questions.txt file
+
+This will run all the questions from the assessment_questions.txt file and write the results to the assessment_questions_results.txt file
+
+'''
+
+
 _ = load_dotenv(find_dotenv())
 embeddings = OpenAIEmbeddings()
 
-config = Config('config_coo.yaml')
+config = Config('./config/config_coo.yaml')
 
 llm_model = "gpt-3.5-turbo-16k"
 llm = get_gpt_model(True, llm_model)

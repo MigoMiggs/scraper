@@ -1,4 +1,4 @@
-from settings import Config
+from config.settings import Config
 import logging
 from langchain.embeddings import HuggingFaceEmbeddings, OpenAIEmbeddings
 from langchain.vectorstores import Chroma
@@ -7,7 +7,7 @@ from langchain.document_loaders import PyPDFium2Loader, TextLoader
 from langchain.docstore.document import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import nltk
-import openai
+
 
 class VectorDB:
     """
@@ -39,7 +39,7 @@ class VectorDB:
         if not hasattr(self, 'initialized'):
             self.initialized = True
 
-            self.config = Config('./config.yaml')
+            self.config = Config('../config/config.yaml')
             self.persistance_path = self.config.data['vectordb']['chroma-path']
             self.logger = logging.getLogger('app.Scraper')
             self.embeddings: langchain.embeddings

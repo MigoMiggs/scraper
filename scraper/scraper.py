@@ -1,13 +1,13 @@
 import time
-import settings
-from settings import Config
+from config import settings
+from config.settings import Config
 import langchain.embeddings
 from urllib.parse import urljoin, urlparse
 from utilities import utils
 import requests
 import os
 from bs4 import BeautifulSoup
-import vectorstore
+from vectorstore import vectorstore
 from xml.etree import ElementTree as ET
 from utilities.utils import (
     write_text_to_file,

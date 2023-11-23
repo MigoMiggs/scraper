@@ -17,7 +17,7 @@ IBTS Assistant REST API answers questions against knowledge bases built from scr
 """
 config = None
 
-with open('../logging.yaml', 'r') as file:
+with open('../config/logging.yaml', 'r') as file:
     log_config = yaml.safe_load(file.read())
     logging.config.dictConfig(log_config)
 

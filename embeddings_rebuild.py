@@ -7,6 +7,10 @@ from langchain.document_loaders import TextLoader, PyPDFium2Loader
 from bs4 import BeautifulSoup
 import nltk
 
+'''
+This script is used to rebuild the embeddings database from the scraped documents.
+'''
+
 # initialize standard logger in debug mode
 logging.basicConfig(level=logging.INFO)
 

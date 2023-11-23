@@ -9,6 +9,10 @@ from langchain.utilities import GoogleSearchAPIWrapper
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.retrievers.web_research import WebResearchRetriever
 
+''' 
+Experiment with the web search tool to see if it is better than what we have built
+'''
+
 _ = load_dotenv(find_dotenv()) # read local .env file
 
 

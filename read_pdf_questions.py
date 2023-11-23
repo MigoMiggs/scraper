@@ -1,6 +1,6 @@
 import re
 import PyPDF2
-from scraper.utilities.utils import write_text_to_file
+from utilities.utils import write_text_to_file
 
 def extract_questions_from_pdf(pdf_path):
     # Read PDF

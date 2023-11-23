@@ -8,6 +8,10 @@ import openai
 from langchain.chains import RetrievalQA
 import os
 
+'''
+Experiment with the retrieval model
+'''
+
 _ = load_dotenv(find_dotenv()) # read local .env file
 openai.api_key  = os.environ['OPENAI_API_KEY']
 

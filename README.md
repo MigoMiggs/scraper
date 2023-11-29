@@ -11,10 +11,6 @@ multiple sitemaps, it will try to fetch them all.
 
 2. Make sure that there is a configuration yaml that contains proper settings and Open AI Key. Here is an example config.yaml:
 ```
-logging:
-  level: "INFO"
-  logfile: "./scraperlog"
-
 embeddings:
   type: "OPEN_AI"
 
@@ -29,7 +25,7 @@ vectordb:
 ```
 Note: You can find existing configuration files under ./config. 
 
-3. Make sure logging levels are adequate within logging.yaml
+3. Make sure logging levels are adequate within ./config/logging.yaml
 
 4. Make sure you run this in the python console
 
@@ -51,13 +47,14 @@ Create .env file, with the following:
 
 ```
 LANGCHAIN_TRACING_V2=true
-LANGCHAIN_ENDPOINT=https://api.smith.langchain.com<br>
-LANGCHAIN_API_KEY=<br>
-LANGCHAIN_PROJECT=<br>
-OPENAI_API_AZURE_BASE=<br>
-OPENAI_API_AZURE_KEY=<br>
-OPENAI_API_AZURE_ENGINE=<br>
+LANGCHAIN_ENDPOINT=https://api.smith.langchain.com
+LANGCHAIN_API_KEY=
+LANGCHAIN_PROJECT=
+OPENAI_API_AZURE_BASE=
+OPENAI_API_AZURE_KEY=
+OPENAI_API_AZURE_ENGINE=
 OPENAI_API_AZURE_VERSION=
+OPENAI_API_KEY=
 ```
 
 Running the Scraper

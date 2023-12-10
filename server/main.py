@@ -98,6 +98,7 @@ def create_app() -> FastAPI:
 
     _app.logger = logger
     _app.kbs = load_vector_dbs()
+    _app.use_azure = config['use_azure']
 
     origins = [
         "http://localhost:3000",  # React local dev server
@@ -133,6 +134,7 @@ async def get_question(request: Request,
     application = request.app
     stores = application.kbs
     logger = application.logger
+    use_azure = application.use_azure
 
     logger.debug(f"Getting answer to question: {question}")
 
@@ -141,16 +143,13 @@ async def get_question(request: Request,
 
     # Show the total documents to make sure we got the right db
     logger.debug(f"Getting answer to question: {question}")
-    # question = question + ' Describe step by step how you got to your answer from the existing information.'
-
-    result = 'could not get result'
 
     if vc is None:
         result = "Could not find knowledge base."
         logger.debug("No KB found.")
         return {"answer": result}
 
-    model = get_gpt_model(use_azure=True, model_name=llm, temperature=0)
+    model = get_gpt_model(use_azure, model_name=llm, temperature=0)
     retriever = get_retriever_from_type('standard', vc, k=6, llm=model)
 
     qa_chain = RetrievalQA.from_chain_type(
@@ -158,7 +157,6 @@ async def get_question(request: Request,
         retriever=retriever
     )
 
-    # question = "to what extent is social equity included in the Orlando Resilience Plan? and in what ways is it included?"
     result = qa_chain({"query": question})
     answer = result['result']
 
@@ -174,6 +172,7 @@ async def get_question_answer(request: Request,
     application = request.app
     stores = application.kbs
     logger = application.logger
+    use_azure = application.use_azure
 
     logger.debug(f"Getting answer to question: {question}")
     logger.debug(f"Choosing answer from answers: {answers}")
@@ -182,7 +181,7 @@ async def get_question_answer(request: Request,
     vc = stores[kb].get_db()
 
     # Make sure that our retriever gets back 6 results
-    model = get_gpt_model(use_azure=True, model_name=llm, temperature=0)
+    model = get_gpt_model(use_azure, model_name=llm, temperature=0)
     retriever = get_retriever_from_type('standard', vc, k=6, llm=model)
 
     # Get the prompt for the multi-answer model
